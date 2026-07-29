@@ -1,0 +1,19 @@
+raw_data_dir: data/raw/prm800k
+output_dir: outputs/audit
+processed_audit_dir: data/processed/audit
+
+splits:
+  - phase1_train
+  - phase1_test
+  - phase2_train
+  - phase2_test
+
+audit:
+  include_human_completion_as_positive: true
+  skip_flagged_completions: true
+  dedupe_candidates_by_text_and_rating: true
+
+sample_preview:
+  max_records: 3
+  max_steps_per_record: 6
+  max_candidate_chars: 280

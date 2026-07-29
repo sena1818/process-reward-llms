@@ -1,0 +1,23 @@
+raw_data_dir: data/raw/prm800k
+problem_split_path: data/processed/splits/problem_splits.json
+pointwise_output_dir: data/processed/pointwise
+pairs_output_dir: data/processed/pairs_v0
+trajectory_output_dir: data/processed/trajectories
+nodes_output_dir: data/processed/nodes_v0
+
+raw_splits:
+  - phase1_train
+  - phase1_test
+  - phase2_train
+  - phase2_test
+
+problem_split:
+  seed: 42
+  train_fraction: 0.8
+  val_fraction: 0.1
+
+materialize:
+  include_human_completion_as_positive: true
+  skip_flagged_completions: true
+  dedupe_candidates_by_text_and_rating: true
+  drop_conflicting_binary_texts: true

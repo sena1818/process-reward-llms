@@ -1,0 +1,14 @@
+.DS_Store
+.venv/
+.hf-cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+data/raw/
+data/processed/
+logs/
+outputs/
+
+*.pt
+*.safetensors
