@@ -10,9 +10,11 @@ test → fine-tuning”方向正确，但不能从拉取代码直接跳到正式
 
 ```text
 冻结数据规则
+  → 本机 CPU smoke（小 backbone，验证代码路径）
   → CPU 重建与一致性校验
   → token 长度审计
   → encoder GPU smoke
+  → Qwen GPU smoke（dev 队列，生产 backbone + bf16）
   → Qwen-LoRA pilot 测吞吐/显存
   → seed=42 的六个主比较
   → 只用 validation 选择 lambda
@@ -39,6 +41,19 @@ test → fine-tuning”方向正确，但不能从拉取代码直接跳到正式
 | 评估 | flat pair accuracy，缺少校准指标与置信区间 | strict node-macro pair accuracy、AUROC、Brier、ECE、first-error、problem-cluster bootstrap |
 | 多 seed / label budget | 没有可靠入口 | 增加 `--seed`、`--max-train-nodes`；同 seed 的预算样本严格嵌套 |
 | 集群执行 | 没有可直接提交的作业层 | 增加 CPU、smoke、pilot、train array、eval array、summary 作业 |
+
+2026-08-06 的第二轮修正（详见
+[`notes/2026-08-06_pre_training_fixes_and_checkpoint_policy_zh.md`](../../notes/2026-08-06_pre_training_fixes_and_checkpoint_policy_zh.md)）：
+
+| 项目 | 修改前 | 当前处理 |
+|---|---|---|
+| 可训练参数精度 | LoRA 随 base 为 bf16，1e-4 的更新可能被舍入 | 可训练参数提升 fp32，冻结 base 保持 bf16 |
+| 本机可运行性 | 只有 `cuda + autocast` 不报 dtype 错 | CPU/MPS/CUDA 均可跑；新增 `--model`/`--device` 做小模型 smoke |
+| Qwen 首次执行 | 第一次真跑就是 4 h 生产队列 pilot | 新增 `01b_qwen_smoke.sbatch`，dev 队列 30 min |
+| checkpoint 选择 | 评测读 `best.pt`，准则随 objective 变化 | 默认读 `last.pt`（固定 epoch），规则对三种 objective 一致 |
+| 评测数据路径 | staged 目录缺失即 `FileNotFoundError` | 逐目录回退到 workspace；eval 作业也复制 `pointwise` |
+| `max_trajectories` | 取文件前 N 条，而该文件强排序（前 64 条含错率为 0） | 与其它 cap 一致，改为 seeded 随机抽样 |
+| GPU 作业内存 | 未声明 `--mem` | 显式 `--mem=96G`（smoke 64G） |
 
 本地严格 cohort 已重建并通过一致性校验：
 
@@ -126,10 +141,12 @@ base model revision。第一次下载模型时解析出的 Hugging Face revision
 
 ### Phase A：只验证代码，不做科研结论
 
+0. 本机 CPU smoke（不占集群资源；见第 6.1 节）。
 1. CPU data materialization + validation。
 2. 全训练集 token-length profile。
 3. RoBERTa pointwise、pairwise、hybrid 三个 smoke。
-4. Qwen hybrid `lambda=0.3` pilot。
+4. Qwen pointwise/pairwise/hybrid 三个 GPU smoke（dev 队列，生产 backbone）。
+5. Qwen hybrid `lambda=0.3` pilot。
 
 任何一项失败都不要提交正式 array。Pilot 至少确认：
 
@@ -194,11 +211,67 @@ Label-efficiency 使用训练 node 数，而不是 flat labels：
 - Best-of-N：目前缺少固定 solver generations 和 answer checker，代码未
   假装实现它。
 
+### 模型选择口径（checkpoint policy）
+
+所有 run 固定训练 3 个 epoch、不做早停，评测一律使用最终 epoch 的
+`last.pt`。`best.pt` 仍然保存，但它是按**每个 run 自己的 validation
+objective** 选出来的，而 $L_{\rm pt}$、$L_{\rm pair}$ 和
+$L_{\rm pt}+\lambda L_{\rm pair}$ 不是同一个量；若用它做主表，被比较的 run 会
+停在由不同准则决定的不同 epoch，从而引入一个不受控变量。切换开关是
+`evaluation.checkpoint`（`last` / `best`），实际使用的取值会写进
+`metrics.json` 与汇总，两种规则的结果不得混入同一张表。
+
 ## 6. UniCluster 一次性准备
+
+### 6.1 先在本机跑一遍（不占集群资源）
+
+集群排队通常比计算本身更花时间，所以所有能在本机发现的问题都应该在本机发现。
+用小 backbone 走一遍完整的 causal-LoRA 代码路径：
+
+```bash
+conda create -y -n llm python=3.11 && conda activate llm
+python -m pip install -r requirements.txt pytest
+python -m pytest tests -q
+
+export HF_HOME="$PWD/.hf-cache"
+python scripts/04_train_pointwise.py --config experiments/qwen_lora_main/train_pointwise.yaml \
+    --smoke --model Qwen/Qwen2.5-0.5B --device cpu
+python scripts/05_train_pairwise.py  --config experiments/qwen_lora_main/train_pairwise.yaml \
+    --smoke --model Qwen/Qwen2.5-0.5B --device cpu
+python scripts/06_train_hybrid.py    --config experiments/qwen_lora_main/train_hybrid.yaml \
+    --smoke --model Qwen/Qwen2.5-0.5B --device cpu --lambda-pair 0.3
+python scripts/07_eval_all.py --config configs/eval_smoke.yaml
+```
+
+`--model` 与 `--device` 只用于 smoke，会被写进 `resolved_config.json` 和 resume
+签名，因此替换过 backbone 的 run 永远可以被识别，不会误当作正式结果。CPU 上大约
+每步一分钟；这只验证正确性，不产生任何可用数值。
+
+### 6.2 集群准备
 
 仓库只跟踪源码、配置、测试和文档。`data/`、`outputs/`、HF cache、
 venv 和 checkpoint 已被 `.gitignore` 排除，因此集群 clone/pull 后仍需
 单独下载或同步 raw data。
+
+`$HOME` 配额有限，HF cache（Qwen2.5-Math-1.5B 约 3 GB）、processed data 和
+checkpoint 都应放在 workspace 而不是 `$HOME`：
+
+```bash
+ws_allocate prm_step_preference 60
+ws_find prm_step_preference
+```
+
+在提交任何作业之前，先确认模块自带的 torch 能看到 GPU，避免 pip 从 PyPI 装进
+一个 CPU-only 的 torch：
+
+```bash
+module purge && module load jupyter/ai
+python -c "import torch; print(torch.__version__, torch.version.cuda)"
+```
+
+若模块已提供合适的 torch，安装依赖时不要让它被覆盖（`--system-site-packages`
+加上先确认 `pip check` 通过即可；必要时用 `--no-deps` 单独装 `peft` 与
+`accelerate`）。
 
 在项目目录中执行；推荐项目、venv、HF cache 位于可持久化 workspace，
 而不是临时目录：
@@ -255,14 +328,21 @@ profile_job="$(sbatch --parsable \
 smoke_job="$(sbatch --parsable \
   --dependency="afterok:${data_job}" \
   experiments/unicluster/01_encoder_smoke.sbatch)"
+qwen_smoke_job="$(sbatch --parsable \
+  --dependency="afterok:${data_job}" \
+  experiments/unicluster/01b_qwen_smoke.sbatch)"
 ```
 
 检查：
 
 ```bash
-squeue -j "${data_job},${profile_job},${smoke_job}"
+squeue -j "${data_job},${profile_job},${smoke_job},${qwen_smoke_job}"
 python scripts/validate_v0_data.py
 ```
+
+`01b_qwen_smoke.sbatch` 是生产 backbone 与 bf16 autocast 的第一次真实执行，跑在
+30 分钟的 development 队列上。它失败就不要提交 pilot。重复提交时用
+`--export=ALL,PRM_OVERWRITE=1` 覆盖上一次的 smoke 目录。
 
 长度报告位于
 `outputs/profiles/qwen_lora_token_lengths.json`。如果 candidate truncation
@@ -273,7 +353,7 @@ python scripts/validate_v0_data.py
 
 ```bash
 pilot_job="$(sbatch --parsable \
-  --dependency="afterok:${profile_job}:${smoke_job}" \
+  --dependency="afterok:${profile_job}:${smoke_job}:${qwen_smoke_job}" \
   experiments/unicluster/02_qwen_pilot.sbatch)"
 ```
 
@@ -397,10 +477,36 @@ outputs/qwen_lora_runs_pilot/
 estimated_hours ≈ 706806 / candidates_per_second / 3600
 ```
 
-再乘 `1.2` 作为 checkpoint、启动与波动余量。只有 pilot 实测值才应写入
-资源申请或计划；在实测前，可把单 run 粗略看作 5–15 H100 GPU-hours，
-六个 seed=42 主比较约 30–90 H100 GPU-hours。这只是排期区间，不是性能
-承诺。
+再乘 `1.2` 作为 checkpoint、启动与波动余量。只有 pilot 实测值才应写入资源申请
+或计划。在实测前，成本几乎完全由 **packed 后的平均 token 数**决定，因为训练
+FLOPs 约为 $8NL$ 每序列：
+
+| 平均 packed 长度 | 单 run（估计） | seed=42 六个主 run |
+|---:|---:|---:|
+| ~600 token | 约 7 h | 约 45 GPU-h |
+| ~1500 token | 约 18 h | 约 110 GPU-h |
+| ~2048（接近全截断） | 约 24 h | 约 145 GPU-h |
+
+所以 token profile 不只决定「2048 还是 4096」，它同时决定整个计划是否可行；
+`03_qwen_main_array.sbatch` 的 36 h walltime 在最右一列会很紧张。
+
+每个 run 的评测约 17 万次 forward-only（节点候选 47,485 + 轨迹步 122,744，
+后者按平均 6.8 步/轨迹实测得到），大致相当于单 run 训练时间的 8%，即 0.5–2 h。
+
+全部阶段的粗略预算：
+
+| 阶段 | 内容 | H100 GPU-hours |
+|---|---|---:|
+| A | 数据重建、token profile（CPU 队列） | 0 |
+| A | encoder smoke + Qwen smoke（dev 队列） | < 1 |
+| A | Qwen pilot | 2–4 |
+| B | seed 42 的 6 个 run + 6 次评测 | 45–155 |
+| C | seeds 7 / 123 × 3 个配置 | 45–155 |
+| D | label efficiency | 15–45 |
+
+若 pilot 的 ETA 过长，降本手段按性价比排序：（1）若 profile 显示 p95 < 1024，把
+`max_length` 降到 1024，几乎无损且省一半；（2）epochs 3 → 2；（3）训练节点预算
+减半并在报告中写明。不要靠削减 λ 档位省钱——λ sweep 是主论证本身。
 
 ## 9. 存储与日志
 
