@@ -101,26 +101,31 @@ def evaluate_run(
     }
 
     staged_data_root = os.environ.get("PRM_DATA_ROOT")
-    if staged_data_root:
-        nodes_dir = Path(staged_data_root) / "nodes_v0"
-        trajectories_dir = Path(staged_data_root) / "trajectories"
-        pointwise_dir = Path(staged_data_root) / "pointwise"
-    else:
-        nodes_dir = _path(
-            project_root,
-            data_cfg.get("nodes_dir", "data/processed/nodes_v0"),
-        )
-        trajectories_dir = _path(
-            project_root,
-            data_cfg.get(
-                "trajectories_dir",
-                "data/processed/trajectories",
-            ),
-        )
-        pointwise_dir = _path(
-            project_root,
-            data_cfg.get("pointwise_dir", "data/processed/pointwise"),
-        )
+
+    def _data_dir(staged_name: str, config_key: str, default: str) -> Path:
+        """Prefer job-local staged data, but fall back to the workspace copy.
+
+        Batch scripts stage only the artifacts a given job needs, so a staged
+        root is not a promise that every dataset was copied.  Falling back
+        keeps an optional artifact (for example the flat pointwise split) from
+        turning into a FileNotFoundError hours into an evaluation job.
+        """
+
+        if staged_data_root:
+            staged = Path(staged_data_root) / staged_name
+            if staged.exists():
+                return staged
+        return _path(project_root, data_cfg.get(config_key, default))
+
+    nodes_dir = _data_dir(
+        "nodes_v0", "nodes_dir", "data/processed/nodes_v0"
+    )
+    trajectories_dir = _data_dir(
+        "trajectories", "trajectories_dir", "data/processed/trajectories"
+    )
+    pointwise_dir = _data_dir(
+        "pointwise", "pointwise_dir", "data/processed/pointwise"
+    )
 
     split_results: dict[str, dict] = {}
     scored_nodes: dict[str, list[dict]] = {}

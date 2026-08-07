@@ -11,9 +11,15 @@
 
 source "${PRM_PROJECT_ROOT:?}/experiments/unicluster/common.sh"
 
-if [[ -n "${TMPDIR:-}" ]]; then
+if [[ -n "${PRM_DATA_ROOT:-}" ]]; then
     rsync -a "${PRM_PROJECT_ROOT}/data/processed/trajectories/" \
         "${PRM_DATA_ROOT}/trajectories/"
+    # Only needed when evaluation.report_full_pointwise is true.  The
+    # evaluator falls back to the workspace copy if this is absent.
+    if [[ -d "${PRM_PROJECT_ROOT}/data/processed/pointwise" ]]; then
+        rsync -a "${PRM_PROJECT_ROOT}/data/processed/pointwise/" \
+            "${PRM_DATA_ROOT}/pointwise/"
+    fi
 fi
 
 suffix=""
