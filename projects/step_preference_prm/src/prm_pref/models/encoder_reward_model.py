@@ -127,6 +127,22 @@ class CausalLoRARewardModel(nn.Module):
         self.model_name_or_path = model_name_or_path
         self.dropout = nn.Dropout(float(dropout))
         self.reward_head = nn.Linear(int(base.config.hidden_size), 1)
+        self._promote_trainable_parameters_to_fp32()
+
+    def _promote_trainable_parameters_to_fp32(self) -> None:
+        """Keep every updated parameter in fp32 while the base stays bf16.
+
+        bf16 has an 8-bit mantissa, so an AdamW step of order 1e-4 relative to
+        the weight can be rounded away entirely.  The frozen base never
+        receives updates and therefore keeps its load dtype; only the LoRA
+        adapters and the reward head are promoted.  PEFT casts activations to
+        the adapter dtype and back, and :meth:`forward` casts the pooled state
+        for the head, so this stays correct with or without autocast.
+        """
+
+        for parameter in self.parameters():
+            if parameter.requires_grad and parameter.is_floating_point():
+                parameter.data = parameter.data.float()
 
     def forward(self, **tokens: torch.Tensor) -> torch.Tensor:
         outputs = self.backbone(**tokens)
@@ -135,9 +151,12 @@ class CausalLoRARewardModel(nn.Module):
         if attention_mask is None:
             pooled = hidden[:, -1]
         else:
+            # Padding is on the right, so the last attended position is the
+            # final content token of each packed candidate.
             last_indices = attention_mask.long().sum(dim=1).sub(1).clamp_min(0)
             batch_indices = torch.arange(hidden.shape[0], device=hidden.device)
             pooled = hidden[batch_indices, last_indices]
+        pooled = pooled.to(self.reward_head.weight.dtype)
         return self.reward_head(self.dropout(pooled)).squeeze(-1)
 
     def checkpoint_state(self) -> dict[str, Any]:
