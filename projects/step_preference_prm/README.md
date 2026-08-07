@@ -50,6 +50,11 @@ python scripts/05_train_pairwise.py --smoke
 python scripts/06_train_hybrid.py --smoke
 ```
 
+To exercise the Qwen causal-LoRA path on a laptop, add `--model` and
+`--device`; off CUDA the smoke profile drops to fp32 automatically. See section
+6.1 of the [training and UniCluster
+guide](TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md) for the full local sequence.
+
 See `TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md` for the current experiment
 matrix and UniCluster execution flow.
 

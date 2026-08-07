@@ -1,0 +1,26 @@
+# Laptop smoke evaluation.  It exercises the full evaluation path -- last.pt
+# loading, node scoring, trajectory scoring, threshold calibration, the flat
+# pointwise fallback, and the problem-cluster bootstrap -- on a few dozen
+# records.  The numbers it produces are meaningless.
+runs_dir: outputs/qwen_lora_runs_smoke
+
+data:
+  nodes_dir: data/processed/nodes_v0
+  pointwise_dir: data/processed/pointwise
+  trajectories_dir: data/processed/trajectories
+
+evaluation:
+  seed: 42
+  selection_seed: 42
+  device: cpu
+  mixed_precision: fp32
+  checkpoint: last
+  batch_size: 4
+  num_workers: 0
+  # Caps are seeded random subsets, not file prefixes.
+  max_nodes: 8
+  max_pointwise_examples: 8
+  max_trajectories: 12
+  threshold_candidates: 21
+  bootstrap_samples: 10
+  report_full_pointwise: true

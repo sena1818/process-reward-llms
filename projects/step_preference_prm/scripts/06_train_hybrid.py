@@ -38,6 +38,19 @@ def main() -> int:
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--seed", type=int, default=None)
     parser.add_argument("--max-train-nodes", type=int, default=None)
+    parser.add_argument(
+        "--model",
+        default=None,
+        help=(
+            "Override model.name_or_path. For laptop smoke runs only; "
+            "a substituted backbone is recorded in the resolved config."
+        ),
+    )
+    parser.add_argument(
+        "--device",
+        default=None,
+        help="Override training.device (auto, cpu, cuda, cuda:N, mps).",
+    )
     args = parser.parse_args()
     if args.smoke and args.pilot:
         parser.error("--smoke and --pilot are mutually exclusive")
@@ -49,6 +62,8 @@ def main() -> int:
         config,
         seed=args.seed,
         max_train_nodes=args.max_train_nodes,
+        model_name=args.model,
+        device=args.device,
     )
     if args.smoke:
         config = with_smoke_profile(config)

@@ -9,16 +9,44 @@ from typing import Any
 VALID_MODES = {"pointwise", "pairwise", "hybrid"}
 VALID_BACKENDS = {"encoder", "causal_lora"}
 VALID_PRECISIONS = {"fp32", "fp16", "bf16"}
+VALID_DEVICES = {"auto", "cpu", "cuda", "mps"}
+
+
+def _cuda_is_target(device: str) -> bool:
+    """Whether the configured device will actually resolve to CUDA."""
+
+    if device.startswith("cuda"):
+        return True
+    if device != "auto":
+        return False
+    try:
+        import torch
+    except ModuleNotFoundError:
+        return False
+    return bool(torch.cuda.is_available())
 
 
 def with_smoke_profile(config: dict[str, Any]) -> dict[str, Any]:
-    """Return a tiny config that exercises real tokenization and backprop."""
+    """Return a tiny config that exercises real tokenization and backprop.
+
+    Off CUDA the profile also drops to fp32.  A smoke run checks that the code
+    path is correct, not that reduced precision is fast, and bf16 matmuls on
+    CPU fall back to a slow unaccelerated kernel that can turn five steps into
+    many minutes.  On CUDA the configured precision is kept so the cluster
+    smoke still exercises the production autocast path.
+    """
 
     result = copy.deepcopy(config)
     model = result.setdefault("model", {})
     data = result.setdefault("data", {})
     training = result.setdefault("training", {})
+    if not _cuda_is_target(str(training.get("device", "auto"))):
+        model["load_dtype"] = "fp32"
+        training["mixed_precision"] = "fp32"
     model["max_length"] = 128
+    # Checkpointing trades compute for memory, and a smoke batch needs no
+    # memory relief.  Production runs keep it enabled.
+    model["gradient_checkpointing"] = False
     data["max_train_nodes"] = 64
     data["max_val_nodes"] = 32
     training["epochs"] = 1
@@ -59,8 +87,16 @@ def with_experiment_overrides(
     *,
     seed: int | None = None,
     max_train_nodes: int | None = None,
+    model_name: str | None = None,
+    device: str | None = None,
 ) -> dict[str, Any]:
-    """Apply explicit, reproducible command-line experiment overrides."""
+    """Apply explicit, reproducible command-line experiment overrides.
+
+    ``model_name`` and ``device`` exist so a laptop can exercise the real
+    causal-LoRA code path with a small stand-in backbone.  They must never be
+    used for a reported run: both are recorded in the resolved config and in
+    the resume signature, so a substituted backbone can always be detected.
+    """
 
     result = copy.deepcopy(config)
     if seed is not None:
@@ -71,6 +107,19 @@ def with_experiment_overrides(
         if max_train_nodes <= 0:
             raise ValueError("max_train_nodes must be positive")
         result.setdefault("data", {})["max_train_nodes"] = max_train_nodes
+    if model_name is not None:
+        if not model_name.strip():
+            raise ValueError("model_name must be a non-empty identifier")
+        model = result.setdefault("model", {})
+        model["name_or_path"] = model_name
+        # A substituted backbone invalidates any pinned upstream revision.
+        model.pop("revision", None)
+    if device is not None:
+        if device not in VALID_DEVICES and not device.startswith("cuda:"):
+            raise ValueError(
+                f"device must be cuda[:n] or one of {sorted(VALID_DEVICES)}"
+            )
+        result.setdefault("training", {})["device"] = device
     return result
 
 

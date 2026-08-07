@@ -14,6 +14,7 @@ from prm_pref.training.configuration import (  # noqa: E402
     validate_training_config,
     with_experiment_overrides,
     with_pilot_profile,
+    with_smoke_profile,
 )
 from prm_pref.utils.config import load_config  # noqa: E402
 
@@ -82,6 +83,54 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(overridden["training"]["seed"], 7)
         self.assertEqual(overridden["data"]["max_train_nodes"], 4785)
         self.assertEqual(config["training"]["seed"], 42)
+
+    def test_smoke_profile_drops_to_fp32_only_off_cuda(self) -> None:
+        config = load_config(
+            PROJECT_ROOT / "experiments/qwen_lora_main/train_hybrid.yaml"
+        )
+        cpu = with_smoke_profile(
+            with_experiment_overrides(config, device="cpu")
+        )
+        self.assertEqual(cpu["model"]["load_dtype"], "fp32")
+        self.assertEqual(cpu["training"]["mixed_precision"], "fp32")
+        self.assertFalse(cpu["model"]["gradient_checkpointing"])
+
+        cuda = with_smoke_profile(
+            with_experiment_overrides(config, device="cuda")
+        )
+        self.assertEqual(cuda["model"]["load_dtype"], "bf16")
+        self.assertEqual(cuda["training"]["mixed_precision"], "bf16")
+
+        # The production config must stay untouched by either profile.
+        self.assertEqual(config["model"]["load_dtype"], "bf16")
+        self.assertTrue(config["model"]["gradient_checkpointing"])
+
+    def test_backbone_override_clears_the_pinned_revision(self) -> None:
+        config = load_config(
+            PROJECT_ROOT / "experiments/qwen_lora_main/train_hybrid.yaml"
+        )
+        config.setdefault("model", {})["revision"] = "deadbeef"
+        overridden = with_experiment_overrides(
+            config,
+            model_name="Qwen/Qwen2.5-0.5B",
+        )
+        self.assertEqual(
+            overridden["model"]["name_or_path"],
+            "Qwen/Qwen2.5-0.5B",
+        )
+        self.assertNotIn("revision", overridden["model"])
+        # A substituted backbone must change the resume signature.
+        self.assertNotEqual(
+            training_signature(config, lambda_pair=0.3),
+            training_signature(overridden, lambda_pair=0.3),
+        )
+
+    def test_invalid_device_override_is_rejected(self) -> None:
+        config = load_config(
+            PROJECT_ROOT / "experiments/qwen_lora_main/train_hybrid.yaml"
+        )
+        with self.assertRaises(ValueError):
+            with_experiment_overrides(config, device="gpu0")
 
     def test_recent_prefix_packer_truncates_prefix_before_candidate(self) -> None:
         packer = CausalRecentPrefixPacker(
