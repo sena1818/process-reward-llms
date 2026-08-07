@@ -10,6 +10,9 @@ evaluation:
   selection_seed: 42
   device: auto
   mixed_precision: fp16
+  # Fixed final epoch for every objective; see the checkpoint policy in
+  # TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md section 5.
+  checkpoint: last
   batch_size: 16
   num_workers: 0
   max_nodes: null

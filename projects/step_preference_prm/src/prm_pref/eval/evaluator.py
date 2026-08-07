@@ -68,8 +68,21 @@ def evaluate_run(
     data_cfg = dict(config.get("data", {}))
     device = _device(str(eval_cfg.get("device", "auto")))
     precision = str(eval_cfg.get("mixed_precision", "bf16"))
+    # "last" is the default because every objective then contributes the same
+    # fixed number of epochs.  Selecting "best" would apply a different rule
+    # per run: each run's own validation objective (L_pt, L_pair, or
+    # L_pt + lambda*L_pair) is a different quantity, so the chosen epoch would
+    # become an uncontrolled variable in the main comparison.
+    checkpoint_choice = str(eval_cfg.get("checkpoint", "last"))
+    if checkpoint_choice not in {"last", "best"}:
+        raise ValueError("evaluation.checkpoint must be 'last' or 'best'")
+    checkpoint_path = run_dir / f"{checkpoint_choice}.pt"
+    if not checkpoint_path.exists():
+        raise FileNotFoundError(
+            f"Requested {checkpoint_choice}.pt is missing in {run_dir}"
+        )
     model, checkpoint = load_reward_checkpoint(
-        run_dir / "best.pt",
+        checkpoint_path,
         device=device,
     )
     model_config = dict(checkpoint["model_config"])
@@ -270,7 +283,14 @@ def evaluate_run(
         "lambda_pair": training_cfg.get("lambda_pair"),
         "seed": training_cfg.get("seed"),
         "train_nodes": training_cfg.get("train_nodes"),
+        "checkpoint": checkpoint_choice,
+        "checkpoint_selection_rule": (
+            "fixed final epoch, identical for every objective"
+            if checkpoint_choice == "last"
+            else "lowest validation loss of this run's own objective"
+        ),
         "checkpoint_epoch": checkpoint.get("epoch"),
+        "planned_epochs": training_cfg.get("planned_epochs"),
         "checkpoint_validation_loss": checkpoint.get("validation_loss"),
         "step_threshold_calibration": step_calibration,
         "threshold_calibration": calibration,
@@ -302,6 +322,8 @@ def build_evaluation_summary(
                 "lambda_pair": result["lambda_pair"],
                 "seed": result.get("seed"),
                 "train_nodes": result.get("train_nodes"),
+                "checkpoint": result.get("checkpoint"),
+                "checkpoint_epoch": result.get("checkpoint_epoch"),
                 "val_step_macro_f1": result["validation"]["step"][
                     "macro_f1"
                 ],
@@ -454,7 +476,16 @@ def build_evaluation_summary(
         ),
         None,
     )
+    checkpoints = sorted(
+        {row["checkpoint"] for row in rows if row["checkpoint"]}
+    )
     return {
+        "checkpoint_policy": (
+            "; ".join(checkpoints)
+            if checkpoints
+            else None
+        ),
+        "checkpoint_policy_is_uniform": len(checkpoints) <= 1,
         "selection_rule": (
             f"hybrid lambda selected once at full budget on seed "
             f"{selection_seed} by validation first-error within +/-1; "

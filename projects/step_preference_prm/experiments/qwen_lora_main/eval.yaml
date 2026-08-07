@@ -10,6 +10,10 @@ evaluation:
   selection_seed: 42
   device: auto
   mixed_precision: bf16
+  # Fixed final epoch for every objective. "best" would select the epoch by
+  # each run's own validation objective, which is a different quantity for
+  # pointwise, pairwise, and each hybrid lambda.
+  checkpoint: last
   batch_size: 4
   num_workers: 4
   max_nodes: null

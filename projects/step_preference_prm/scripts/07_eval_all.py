@@ -71,15 +71,23 @@ def main() -> int:
         print(json.dumps(summary, indent=2))
         return 0
 
+    checkpoint_choice = str(
+        config.get("evaluation", {}).get("checkpoint", "last")
+    )
     if args.run:
         run_dirs = []
         for value in args.run:
             path = Path(value)
             run_dirs.append(path if path.is_absolute() else runs_dir / path)
     else:
-        run_dirs = sorted(path.parent for path in runs_dir.glob("*/best.pt"))
+        run_dirs = sorted(
+            path.parent
+            for path in runs_dir.glob(f"*/{checkpoint_choice}.pt")
+        )
     if not run_dirs:
-        raise FileNotFoundError(f"No best.pt checkpoints found under {runs_dir}")
+        raise FileNotFoundError(
+            f"No {checkpoint_choice}.pt checkpoints found under {runs_dir}"
+        )
 
     results = []
     for run_dir in run_dirs:

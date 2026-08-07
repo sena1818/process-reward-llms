@@ -24,6 +24,7 @@ from transformers import AutoTokenizer
 from prm_pref.data.datasets import ExactPrefixNodeCollator, IndexedJsonlDataset
 from prm_pref.data.input_packing import build_input_packer
 from prm_pref.models.encoder_reward_model import (
+    EncoderRewardModel,
     RewardModel,
     build_reward_model,
     load_checkpoint_payload,
@@ -331,33 +332,39 @@ def _save_last_checkpoint(
     *,
     model: RewardModel,
     model_config: dict[str, Any],
+    training_config: dict[str, Any],
     optimizer: AdamW,
     scheduler: LambdaLR,
     scaler: Any,
     epoch: int,
     global_step: int,
+    validation_loss: float,
     best_validation_loss: float,
     history: list[dict],
     signature: str,
 ) -> None:
-    _atomic_torch_save(
-        {
-            "format_version": 2,
-            "checkpoint_type": "training_state",
-            "model_state": model.checkpoint_state(),
-            "model_config": model_config,
-            "optimizer_state_dict": optimizer.state_dict(),
-            "scheduler_state_dict": scheduler.state_dict(),
-            "scaler_state_dict": scaler.state_dict(),
-            "epoch": epoch,
-            "global_step": global_step,
-            "best_validation_loss": best_validation_loss,
-            "history": history,
-            "signature": signature,
-            "rng_state": _capture_rng_state(),
-        },
-        path,
-    )
+    # ``last.pt`` carries the same evaluation-facing metadata as ``best.pt``
+    # so that a fixed-epoch comparison can load it directly.
+    payload: dict[str, Any] = {
+        "format_version": 2,
+        "checkpoint_type": "training_state",
+        "model_state": model.checkpoint_state(),
+        "model_config": model_config,
+        "training_config": training_config,
+        "optimizer_state_dict": optimizer.state_dict(),
+        "scheduler_state_dict": scheduler.state_dict(),
+        "scaler_state_dict": scaler.state_dict(),
+        "epoch": epoch,
+        "global_step": global_step,
+        "validation_loss": validation_loss,
+        "best_validation_loss": best_validation_loss,
+        "history": history,
+        "signature": signature,
+        "rng_state": _capture_rng_state(),
+    }
+    if isinstance(model, EncoderRewardModel):
+        payload["encoder_config"] = model.encoder.config.to_dict()
+    _atomic_torch_save(payload, path)
 
 
 def run_training(
@@ -601,6 +608,18 @@ def run_training(
         print(f"Run already completed through epoch {epochs}: {run_dir}")
         return run_dir
 
+    checkpoint_metadata = {
+        "run_name": name,
+        "mode": mode,
+        "lambda_pair": lambda_pair if mode == "hybrid" else None,
+        "seed": seed,
+        "train_nodes": len(train_data),
+        "val_nodes": len(val_data),
+        "configured_max_train_nodes": data_cfg.get("max_train_nodes"),
+        "planned_epochs": epochs,
+        "signature": signature,
+    }
+
     max_grad_norm = float(train_cfg.get("max_grad_norm", 1.0))
     log_every = int(train_cfg.get("log_every", 100))
     max_validation_batches = _optional_int(
@@ -706,18 +725,7 @@ def run_training(
                 run_dir / "best.pt",
                 model=model,
                 model_config=model_cfg,
-                training_config={
-                    "run_name": name,
-                    "mode": mode,
-                    "lambda_pair": lambda_pair if mode == "hybrid" else None,
-                    "seed": seed,
-                    "train_nodes": len(train_data),
-                    "val_nodes": len(val_data),
-                    "configured_max_train_nodes": data_cfg.get(
-                        "max_train_nodes"
-                    ),
-                    "signature": signature,
-                },
+                training_config=checkpoint_metadata,
                 epoch=epoch,
                 validation_loss=best_validation_loss,
             )
@@ -730,11 +738,13 @@ def run_training(
             last_checkpoint_path,
             model=model,
             model_config=model_cfg,
+            training_config=checkpoint_metadata,
             optimizer=optimizer,
             scheduler=scheduler,
             scaler=scaler,
             epoch=epoch,
             global_step=global_step,
+            validation_loss=validation["total"],
             best_validation_loss=best_validation_loss,
             history=history,
             signature=signature,
@@ -749,9 +759,16 @@ def run_training(
         "seed": seed,
         "train_nodes": len(train_data),
         "val_nodes": len(val_data),
+        "epochs": epochs,
         "best_validation_loss": best_validation_loss,
         "best_checkpoint": str(run_dir / "best.pt"),
         "resume_checkpoint": str(last_checkpoint_path),
+        "checkpoint_policy": (
+            "last.pt is the fixed-epoch checkpoint used for the controlled "
+            "comparison; best.pt is retained only as a diagnostic, because "
+            "its selection criterion is each run's own validation objective "
+            "and therefore differs across pointwise/pairwise/hybrid"
+        ),
         "threshold_status": "not_calibrated_during_training",
         "threshold_rule": (
             "calibrate on validation trajectories in scripts/07_eval_all.py"
