@@ -162,6 +162,7 @@ def evaluate_run(
             max_trajectories=_optional_int(
                 eval_cfg.get("max_trajectories")
             ),
+            seed=seed + split_index,
         )
         scored_trajectories[split] = trajectories
         split_results[split] = {

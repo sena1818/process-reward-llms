@@ -251,6 +251,38 @@ class MaterializationTests(unittest.TestCase):
                 1,
             )
 
+    @unittest.skipIf(IndexedJsonlDataset is None, "requires torch")
+    def test_capped_trajectory_reads_are_sampled_not_prefixed(self) -> None:
+        # The real trajectory files are strongly ordered: their leading
+        # records contain almost no annotated first errors.  A capped read
+        # must therefore sample instead of taking a prefix, or a partial
+        # evaluation would see a systematically error-poor subset.
+        from prm_pref.eval.inference import _read_jsonl
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "trajectories.jsonl"
+            records = [
+                {"sample_id": index, "first_error_index": None}
+                for index in range(100)
+            ] + [
+                {"sample_id": 100 + index, "first_error_index": 1}
+                for index in range(100)
+            ]
+            path.write_text(
+                "".join(json.dumps(record) + "\n" for record in records),
+                encoding="utf-8",
+            )
+
+            capped = list(_read_jsonl(path, 40, 42))
+            self.assertEqual(len(capped), 40)
+            known = sum(
+                record["first_error_index"] is not None for record in capped
+            )
+            # A prefix read would yield exactly zero here.
+            self.assertGreater(known, 5)
+
+            self.assertEqual(len(list(_read_jsonl(path, None, 42))), 200)
+
 
 if __name__ == "__main__":
     unittest.main()

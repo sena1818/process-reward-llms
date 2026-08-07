@@ -7,6 +7,7 @@ from typing import Any, Iterator
 
 import torch
 
+from prm_pref.data.datasets import IndexedJsonlDataset
 from prm_pref.data.input_packing import InputPacker
 
 
@@ -90,13 +91,30 @@ def score_node_loader(
     return results
 
 
-def _read_jsonl(path: Path, max_records: int | None) -> Iterator[dict]:
-    with path.open("r", encoding="utf-8") as handle:
-        for index, line in enumerate(handle):
-            if max_records is not None and index >= max_records:
-                break
-            if line.strip():
-                yield json.loads(line)
+def _read_jsonl(
+    path: Path,
+    max_records: int | None,
+    seed: int,
+) -> Iterator[dict]:
+    """Stream a JSONL file, or a seeded random subset when capped.
+
+    Trajectory files are strongly ordered -- their leading records contain
+    almost no annotated first errors -- so taking a prefix would produce a
+    subset whose error rate is several times lower than the split's.  Capping
+    therefore samples the same way ``IndexedJsonlDataset`` does, which also
+    keeps ``max_trajectories`` consistent with the other evaluation caps.
+    """
+
+    if max_records is None:
+        with path.open("r", encoding="utf-8") as handle:
+            for line in handle:
+                if line.strip():
+                    yield json.loads(line)
+        return
+
+    subset = IndexedJsonlDataset(path, max_examples=max_records, seed=seed)
+    for index in range(len(subset)):
+        yield subset[index]
 
 
 @torch.no_grad()
@@ -109,6 +127,7 @@ def score_trajectories(
     device: torch.device,
     precision: str = "fp32",
     max_trajectories: int | None = None,
+    seed: int = 42,
 ) -> list[dict]:
     results: list[dict] = []
     pending_contexts: list[dict] = []
@@ -139,7 +158,7 @@ def score_trajectories(
         pending_locations.clear()
 
     model.eval()
-    for trajectory in _read_jsonl(path, max_trajectories):
+    for trajectory in _read_jsonl(path, max_trajectories, seed):
         result_index = len(results)
         steps = trajectory["steps"]
         results.append(
