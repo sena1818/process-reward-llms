@@ -14,7 +14,8 @@ evaluation:
   # each run's own validation objective, which is a different quantity for
   # pointwise, pairwise, and each hybrid lambda.
   checkpoint: last
-  batch_size: 4
+  # Forward-only work, so this can be much larger than the training batch.
+  batch_size: 24
   num_workers: 4
   max_nodes: null
   max_pointwise_examples: null
