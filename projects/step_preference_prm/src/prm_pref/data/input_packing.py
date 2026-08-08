@@ -20,36 +20,85 @@ class InputPacker(Protocol):
 
 
 class EncoderPairPacker:
-    """Pack encoder inputs as ``context, candidate`` text pairs."""
+    """Pack encoder inputs as ``context, candidate`` text pairs.
+
+    The candidate is the step being scored, so it receives the token budget
+    before the context.  This also avoids Hugging Face's ``only_first``
+    truncation error when a candidate alone is longer than ``max_length``.
+    """
 
     def __init__(self, tokenizer: Any, *, max_length: int) -> None:
+        if max_length <= 0:
+            raise ValueError("max_length must be positive")
         self.tokenizer = tokenizer
         self.max_length = max_length
 
+    def _encode(self, text: str) -> list[int]:
+        return list(self.tokenizer.encode(text, add_special_tokens=False))
+
+    def _pack_ids(
+        self,
+        context_ids: list[int],
+        candidate_ids: list[int],
+    ) -> tuple[dict[str, list[int]], dict[str, int]]:
+        special_tokens = int(self.tokenizer.num_special_tokens_to_add(pair=True))
+        available = self.max_length - special_tokens
+        if available <= 0:
+            raise ValueError("max_length is too small for encoder pair special tokens")
+
+        # The candidate is the object being judged.  Retain all of it whenever
+        # possible; only an intrinsically overlong candidate is truncated.
+        kept_candidate = candidate_ids[:available]
+        context_budget = max(available - len(kept_candidate), 0)
+        kept_context = context_ids[:context_budget]
+        encoded = self.tokenizer.prepare_for_model(
+            kept_context,
+            pair_ids=kept_candidate,
+            add_special_tokens=True,
+            truncation=False,
+            return_attention_mask=False,
+        )
+        features = {
+            key: list(value)
+            for key, value in encoded.items()
+            if isinstance(value, (list, tuple))
+        }
+        if len(features["input_ids"]) > self.max_length:
+            raise RuntimeError("Encoder pair packer exceeded max_length")
+        return features, {
+            "context_truncated": int(len(kept_context) < len(context_ids)),
+            "candidate_truncated": int(len(kept_candidate) < len(candidate_ids)),
+        }
+
     def pack(self, examples: list[dict]) -> PackedBatch:
-        contexts = [
-            format_context(item["problem"], item.get("prefix", []))
-            for item in examples
-        ]
-        candidates = [item["candidate"] for item in examples]
-        tokens = self.tokenizer(
-            contexts,
-            candidates,
+        features: list[dict[str, list[int]]] = []
+        totals = {
+            "examples": len(examples),
+            "tokens": 0,
+            "problem_truncated": 0,
+            "prefix_truncated": 0,
+            "candidate_truncated": 0,
+        }
+        for item in examples:
+            packed, telemetry = self._pack_ids(
+                self._encode(format_context(item["problem"], item.get("prefix", []))),
+                self._encode(str(item["candidate"])),
+            )
+            features.append(packed)
+            totals["tokens"] += len(packed["input_ids"])
+            # Encoder inputs do not retain separate problem/prefix boundaries
+            # after formatting, so account for a shortened context as prefix
+            # truncation in the shared telemetry schema.
+            totals["prefix_truncated"] += telemetry["context_truncated"]
+            totals["candidate_truncated"] += telemetry["candidate_truncated"]
+        tokens = self.tokenizer.pad(
+            features,
             padding=True,
-            truncation="only_first",
-            max_length=self.max_length,
             return_tensors="pt",
         )
-        token_count = int(tokens["attention_mask"].sum().item())
         return PackedBatch(
             tokens=tokens,
-            telemetry={
-                "examples": len(examples),
-                "tokens": token_count,
-                "problem_truncated": 0,
-                "prefix_truncated": 0,
-                "candidate_truncated": 0,
-            },
+            telemetry=totals,
         )
 
 

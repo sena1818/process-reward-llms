@@ -8,7 +8,10 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from prm_pref.data.input_packing import CausalRecentPrefixPacker  # noqa: E402
+from prm_pref.data.input_packing import (  # noqa: E402
+    CausalRecentPrefixPacker,
+    EncoderPairPacker,
+)
 from prm_pref.training.configuration import (  # noqa: E402
     training_signature,
     validate_training_config,
@@ -34,6 +37,40 @@ class FakeTokenizer:
     def prepare_for_model(self, ids: list[int], **kwargs) -> dict:
         del kwargs
         return {"input_ids": [1] + ids}
+
+
+class FakePairTokenizer(FakeTokenizer):
+    def num_special_tokens_to_add(self, *, pair: bool) -> int:
+        return 3 if pair else 1
+
+    def prepare_for_model(
+        self,
+        ids: list[int],
+        *,
+        pair_ids: list[int] | None = None,
+        **kwargs,
+    ) -> dict:
+        del kwargs
+        return {"input_ids": [101] + ids + [102] + (pair_ids or []) + [102]}
+
+    def pad(self, features: list[dict], **kwargs):
+        import torch
+
+        del kwargs
+        width = max(len(feature["input_ids"]) for feature in features)
+        input_ids = [
+            feature["input_ids"] + [self.pad_token_id] * (width - len(feature["input_ids"]))
+            for feature in features
+        ]
+        attention_mask = [
+            [1] * len(feature["input_ids"])
+            + [0] * (width - len(feature["input_ids"]))
+            for feature in features
+        ]
+        return {
+            "input_ids": torch.tensor(input_ids),
+            "attention_mask": torch.tensor(attention_mask),
+        }
 
 
 class ConfigurationTests(unittest.TestCase):
@@ -150,6 +187,21 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(measured["problem_truncated"], 1)
         self.assertEqual(measured["prefix_truncated"], 1)
         self.assertLessEqual(measured["tokens"], 120)
+
+    def test_encoder_pair_packer_truncates_an_overlong_candidate_safely(self) -> None:
+        packer = EncoderPairPacker(FakePairTokenizer(), max_length=12)
+        packed = packer.pack(
+            [
+                {
+                    "problem": "context" * 10,
+                    "prefix": ["previous step"],
+                    "candidate": "candidate" * 10,
+                }
+            ]
+        )
+        self.assertEqual(tuple(packed.tokens["input_ids"].shape), (1, 12))
+        self.assertEqual(packed.telemetry["candidate_truncated"], 1)
+        self.assertEqual(packed.telemetry["prefix_truncated"], 1)
 
 
 if __name__ == "__main__":
