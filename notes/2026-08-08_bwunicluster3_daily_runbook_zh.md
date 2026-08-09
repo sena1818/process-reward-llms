@@ -448,11 +448,15 @@ tail -n 80 logs/prm-enc-smoke-6222039.err
 拉取修复后再提交 encoder smoke；同样优先使用 H100 short：
 
 ```bash
-encoder_smoke_job="$(sbatch --parsable --account=hd --export=ALL \
+encoder_smoke_job="$(sbatch --parsable --account=hd \
+  --export=ALL,PRM_OVERWRITE=1 \
   --partition=gpu_h100_short \
   experiments/unicluster/01_encoder_smoke.sbatch)"
 echo "encoder_smoke_job=${encoder_smoke_job}"
 ```
+
+`PRM_OVERWRITE=1` 只用于本次失败 smoke 的重跑：它删除同名的**烟雾测试**输出目录，
+避免上次失败留下的半成品目录阻止修复后的脚本启动。不要把它用于正式实验目录。
 
 检查：
 

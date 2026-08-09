@@ -11,6 +11,11 @@
 
 source "${PRM_PROJECT_ROOT:?}/experiments/unicluster/common.sh"
 
-python scripts/04_train_pointwise.py --smoke
-python scripts/05_train_pairwise.py --smoke
-python scripts/06_train_hybrid.py --smoke
+overwrite_flag=()
+if [[ "${PRM_OVERWRITE:-0}" == "1" ]]; then
+    overwrite_flag=(--overwrite)
+fi
+
+python scripts/04_train_pointwise.py --smoke "${overwrite_flag[@]}"
+python scripts/05_train_pairwise.py --smoke "${overwrite_flag[@]}"
+python scripts/06_train_hybrid.py --smoke "${overwrite_flag[@]}"
