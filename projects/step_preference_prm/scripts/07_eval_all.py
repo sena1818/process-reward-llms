@@ -47,10 +47,15 @@ def main() -> int:
         runs_dir = PROJECT_ROOT / runs_dir
 
     if args.summarize_only:
-        metric_paths = sorted(runs_dir.glob("*/metrics.json"))
+        metrics_filename = str(
+            config.get("evaluation", {}).get("metrics_filename", "metrics.json")
+        )
+        if Path(metrics_filename).name != metrics_filename:
+            raise ValueError("evaluation.metrics_filename must be a plain filename")
+        metric_paths = sorted(runs_dir.glob(f"*/{metrics_filename}"))
         if not metric_paths:
             raise FileNotFoundError(
-                f"No metrics.json files found under {runs_dir}"
+                f"No {metrics_filename} files found under {runs_dir}"
             )
         results = [
             json.loads(path.read_text(encoding="utf-8"))
@@ -62,7 +67,12 @@ def main() -> int:
                 config.get("evaluation", {}).get("selection_seed", 42)
             ),
         )
-        output_path = runs_dir / "v0_summary.json"
+        summary_filename = str(
+            config.get("evaluation", {}).get("summary_filename", "v0_summary.json")
+        )
+        if Path(summary_filename).name != summary_filename:
+            raise ValueError("evaluation.summary_filename must be a plain filename")
+        output_path = runs_dir / summary_filename
         output_path.write_text(
             json.dumps(summary, indent=2) + "\n",
             encoding="utf-8",

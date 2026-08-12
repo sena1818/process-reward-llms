@@ -304,7 +304,10 @@ def evaluate_run(
         "test": split_results["test"],
         "test_confidence_intervals": confidence_intervals,
     }
-    (run_dir / "metrics.json").write_text(
+    metrics_filename = str(eval_cfg.get("metrics_filename", "metrics.json"))
+    if Path(metrics_filename).name != metrics_filename:
+        raise ValueError("evaluation.metrics_filename must be a plain filename")
+    (run_dir / metrics_filename).write_text(
         json.dumps(result, indent=2) + "\n",
         encoding="utf-8",
     )
