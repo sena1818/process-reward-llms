@@ -14,16 +14,27 @@
 source "${PRM_PROJECT_ROOT:?}/experiments/unicluster/common.sh"
 : "${PRM_SEED:?Set PRM_SEED to one of the pre-registered seeds}"
 
+# A one-epoch run cannot resume: recovery granularity is a whole epoch, so a
+# failed task leaves only its config and tokenizer behind and the rerun must
+# discard them.  Opt in explicitly, per resubmission, so a routine submission
+# can never delete a completed run.
+overwrite_flag=()
+if [[ "${PRM_OVERWRITE:-0}" == "1" ]]; then
+    overwrite_flag=(--overwrite)
+fi
+
 case "${SLURM_ARRAY_TASK_ID}" in
     0)
         python scripts/04_train_pointwise.py \
             --config experiments/qwen_lora_v1/train_pointwise.yaml \
-            --seed "${PRM_SEED}"
+            --seed "${PRM_SEED}" \
+            "${overwrite_flag[@]}"
         ;;
     1)
         python scripts/05_train_pairwise.py \
             --config experiments/qwen_lora_v1/train_pairwise.yaml \
-            --seed "${PRM_SEED}"
+            --seed "${PRM_SEED}" \
+            "${overwrite_flag[@]}"
         ;;
     2|3|4|5)
         lambda_values=(0.1 0.3 0.5 1.0)
@@ -31,7 +42,8 @@ case "${SLURM_ARRAY_TASK_ID}" in
         python scripts/06_train_hybrid.py \
             --config experiments/qwen_lora_v1/train_hybrid.yaml \
             --lambda-pair "${lambda_values[$lambda_index]}" \
-            --seed "${PRM_SEED}"
+            --seed "${PRM_SEED}" \
+            "${overwrite_flag[@]}"
         ;;
     *)
         echo "Unexpected array index: ${SLURM_ARRAY_TASK_ID}" >&2

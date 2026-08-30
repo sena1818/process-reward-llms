@@ -57,6 +57,11 @@ def with_smoke_profile(config: dict[str, Any]) -> dict[str, Any]:
     training["max_steps_per_epoch"] = 5
     training["max_validation_batches"] = 2
     training["log_every"] = 1
+    if training.get("eval_every_optimizer_steps") is not None:
+        # Five local steps at accumulation 1 give five updates, so the
+        # production cadence would never fire and the smoke would silently
+        # skip the diagnostic-validation path it is meant to cover.
+        training["eval_every_optimizer_steps"] = 2
     result["output_dir"] = f"{result.get('output_dir', 'outputs/runs')}_smoke"
     return result
 

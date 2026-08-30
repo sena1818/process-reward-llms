@@ -1,0 +1,29 @@
+# Pilot gate for the V1 evaluation path.  It exercises the settings the
+# confirmatory sweep uses -- no first-error benchmark, score persistence, and
+# the report-all summary -- on a capped subset.  The numbers are meaningless.
+runs_dir: outputs/qwen_lora_v1_runs_pilot
+
+data:
+  nodes_dir: data/processed/nodes_v0
+  pointwise_dir: data/processed/pointwise
+  trajectories_dir: data/processed/trajectories
+
+evaluation:
+  seed: 42
+  selection_seed: 42
+  device: auto
+  mixed_precision: bf16
+  checkpoint: last
+  batch_size: 24
+  num_workers: 4
+  max_nodes: 64
+  max_pointwise_examples: 64
+  max_trajectories: 64
+  threshold_candidates: 21
+  bootstrap_samples: 20
+  report_full_pointwise: false
+  report_first_error: false
+  save_scores: true
+  metrics_filename: metrics.json
+  summary_filename: v1_pilot_summary.json
+  selection_rule: report_all
