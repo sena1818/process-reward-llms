@@ -66,6 +66,11 @@ def main() -> int:
             selection_seed=int(
                 config.get("evaluation", {}).get("selection_seed", 42)
             ),
+            selection_rule=str(
+                config.get("evaluation", {}).get(
+                    "selection_rule", "first_error_then_pairwise"
+                )
+            ),
         )
         summary_filename = str(
             config.get("evaluation", {}).get("summary_filename", "v0_summary.json")
@@ -110,8 +115,18 @@ def main() -> int:
             selection_seed=int(
                 config.get("evaluation", {}).get("selection_seed", 42)
             ),
+            selection_rule=str(
+                config.get("evaluation", {}).get(
+                    "selection_rule", "first_error_then_pairwise"
+                )
+            ),
         )
-        output_path = runs_dir / "v0_summary.json"
+        summary_filename = str(
+            config.get("evaluation", {}).get("summary_filename", "v0_summary.json")
+        )
+        if Path(summary_filename).name != summary_filename:
+            raise ValueError("evaluation.summary_filename must be a plain filename")
+        output_path = runs_dir / summary_filename
         output_path.write_text(
             json.dumps(summary, indent=2) + "\n",
             encoding="utf-8",

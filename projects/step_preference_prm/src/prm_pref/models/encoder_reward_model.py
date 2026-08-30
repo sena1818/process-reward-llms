@@ -238,6 +238,7 @@ def save_reward_checkpoint(
     training_config: dict[str, Any],
     epoch: int,
     validation_loss: float,
+    global_step: int | None = None,
 ) -> None:
     payload: dict[str, Any] = {
         "format_version": 2,
@@ -245,6 +246,7 @@ def save_reward_checkpoint(
         "model_config": model_config,
         "training_config": training_config,
         "epoch": epoch,
+        "global_step": global_step,
         "validation_loss": validation_loss,
     }
     if isinstance(model, EncoderRewardModel):

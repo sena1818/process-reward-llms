@@ -17,7 +17,6 @@ from typing import Any
 import torch
 from torch.nn.utils import clip_grad_norm_
 from torch.optim import AdamW
-from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.data import DataLoader
 from transformers import AutoTokenizer
 
@@ -39,6 +38,7 @@ from prm_pref.training.losses import (
     nodewise_pairwise_loss,
     nodewise_pointwise_loss,
 )
+from prm_pref.training.scheduling import build_linear_warmup_decay_scheduler
 from prm_pref.utils.seed import seed_everything
 
 
@@ -52,6 +52,10 @@ def _path(project_root: Path, value: str | Path) -> Path:
 
 def _optional_int(value: object) -> int | None:
     return None if value is None else int(value)
+
+
+def _optimizer_learning_rate(optimizer: AdamW) -> float:
+    return float(optimizer.param_groups[0]["lr"])
 
 
 def _device_from_config(value: str) -> torch.device:
@@ -87,24 +91,6 @@ def _build_grad_scaler(device: torch.device, precision: str):
         return torch.amp.GradScaler("cuda", enabled=enabled)
     except (AttributeError, TypeError):
         return torch.cuda.amp.GradScaler(enabled=enabled)
-
-
-def _build_scheduler(
-    optimizer: AdamW,
-    *,
-    total_steps: int,
-    warmup_ratio: float,
-) -> LambdaLR:
-    warmup_steps = int(total_steps * warmup_ratio)
-
-    def multiplier(step: int) -> float:
-        if warmup_steps and step < warmup_steps:
-            return float(step + 1) / float(warmup_steps)
-        remaining = max(total_steps - step, 0)
-        decay_steps = max(total_steps - warmup_steps, 1)
-        return float(remaining) / float(decay_steps)
-
-    return LambdaLR(optimizer, multiplier)
 
 
 def _forward_node_losses(
@@ -334,12 +320,14 @@ def _save_last_checkpoint(
     model_config: dict[str, Any],
     training_config: dict[str, Any],
     optimizer: AdamW,
-    scheduler: LambdaLR,
+    scheduler: Any,
     scaler: Any,
     epoch: int,
     global_step: int,
     validation_loss: float,
     best_validation_loss: float,
+    best_epoch: int | None,
+    best_step: int | None,
     history: list[dict],
     signature: str,
 ) -> None:
@@ -358,6 +346,8 @@ def _save_last_checkpoint(
         "global_step": global_step,
         "validation_loss": validation_loss,
         "best_validation_loss": best_validation_loss,
+        "best_epoch": best_epoch,
+        "best_step": best_step,
         "history": history,
         "signature": signature,
         "rng_state": _capture_rng_state(),
@@ -536,15 +526,24 @@ def run_training(
         weight_decay=float(train_cfg.get("weight_decay", 0.01)),
     )
     total_updates = math.ceil(steps_per_epoch / accumulation) * epochs
-    scheduler = _build_scheduler(
+    warmup_ratio = float(train_cfg.get("warmup_ratio", 0.06))
+    scheduler_metadata = {
+        "name": "linear_warmup_then_linear_decay",
+        "total_optimizer_updates": total_updates,
+        "warmup_optimizer_updates": int(total_updates * warmup_ratio),
+        "warmup_ratio": warmup_ratio,
+    }
+    scheduler = build_linear_warmup_decay_scheduler(
         optimizer,
         total_steps=total_updates,
-        warmup_ratio=float(train_cfg.get("warmup_ratio", 0.06)),
+        warmup_ratio=warmup_ratio,
     )
     scaler = _build_grad_scaler(device, precision)
 
     history: list[dict] = []
     best_validation_loss = math.inf
+    best_epoch: int | None = None
+    best_step: int | None = None
     global_step = 0
     start_epoch = 1
     if resume_payload is not None:
@@ -555,6 +554,8 @@ def run_training(
         best_validation_loss = float(
             resume_payload.get("best_validation_loss", math.inf)
         )
+        best_epoch = resume_payload.get("best_epoch")
+        best_step = resume_payload.get("best_step")
         global_step = int(resume_payload.get("global_step", 0))
         start_epoch = int(resume_payload["epoch"]) + 1
         _restore_rng_state(resume_payload["rng_state"])
@@ -595,6 +596,7 @@ def run_training(
                 "val_nodes": len(val_data),
                 "steps_per_epoch": steps_per_epoch,
                 "epochs": epochs,
+                "scheduler": scheduler_metadata,
                 "start_epoch": start_epoch,
                 "trainable_parameters": environment["model_parameters"][
                     "trainable"
@@ -617,11 +619,15 @@ def run_training(
         "val_nodes": len(val_data),
         "configured_max_train_nodes": data_cfg.get("max_train_nodes"),
         "planned_epochs": epochs,
+        "scheduler": scheduler_metadata,
         "signature": signature,
     }
 
     max_grad_norm = float(train_cfg.get("max_grad_norm", 1.0))
     log_every = int(train_cfg.get("log_every", 100))
+    eval_every_optimizer_steps = _optional_int(
+        train_cfg.get("eval_every_optimizer_steps")
+    )
     max_validation_batches = _optional_int(
         train_cfg.get("max_validation_batches")
     )
@@ -632,6 +638,8 @@ def run_training(
         epoch_started = time.time()
         running = 0.0
         telemetry = _empty_telemetry()
+        gradient_norms: list[float] = []
+        diagnostic_validations: list[dict[str, Any]] = []
         train_iterator = iter(train_loader)
         for local_step in range(1, steps_per_epoch + 1):
             batch = next(train_iterator)
@@ -668,7 +676,13 @@ def run_training(
             should_update = local_step == window_end
             if should_update:
                 scaler.unscale_(optimizer)
-                clip_grad_norm_(trainable_parameters, max_grad_norm)
+                gradient_norm = float(
+                    clip_grad_norm_(trainable_parameters, max_grad_norm)
+                    .detach()
+                    .float()
+                    .cpu()
+                )
+                gradient_norms.append(gradient_norm)
                 scale_before_step = scaler.get_scale()
                 scaler.step(optimizer)
                 scaler.update()
@@ -681,11 +695,49 @@ def run_training(
                     global_step += 1
                 optimizer.zero_grad(set_to_none=True)
 
+                if (
+                    optimizer_stepped
+                    and eval_every_optimizer_steps is not None
+                    and global_step % eval_every_optimizer_steps == 0
+                    and global_step < total_updates
+                ):
+                    validation_started = time.time()
+                    diagnostic_validation, diagnostic_telemetry = _validate(
+                        model=model,
+                        mode=mode,
+                        loader=val_loader,
+                        device=device,
+                        precision=precision,
+                        lambda_pair=lambda_pair,
+                        max_batches=max_validation_batches,
+                    )
+                    diagnostic = {
+                        "optimizer_step": global_step,
+                        "epoch": epoch,
+                        "learning_rate": _optimizer_learning_rate(optimizer),
+                        "validation": diagnostic_validation,
+                        "validation_telemetry": diagnostic_telemetry,
+                        "elapsed_seconds": time.time() - validation_started,
+                    }
+                    diagnostic_validations.append(diagnostic)
+                    print(
+                        json.dumps(
+                            {
+                                "event": "diagnostic_validation",
+                                **diagnostic,
+                            },
+                            indent=2,
+                        )
+                    )
+
             if log_every and local_step % log_every == 0:
                 elapsed = max(time.time() - epoch_started, 1e-9)
                 print(
                     f"epoch={epoch} step={local_step}/{steps_per_epoch} "
                     f"loss={running / telemetry['nodes']:.5f} "
+                    f"optimizer_step={global_step} "
+                    f"lr={_optimizer_learning_rate(optimizer):.3e} "
+                    f"grad_norm={gradient_norms[-1] if gradient_norms else float('nan'):.3f} "
                     f"nodes/s={telemetry['nodes'] / elapsed:.2f} "
                     f"candidates/s={telemetry['candidates'] / elapsed:.2f}"
                 )
@@ -706,6 +758,18 @@ def run_training(
             "validation": validation,
             "elapsed_seconds": elapsed_seconds,
             "optimizer_steps": global_step,
+            "learning_rate": _optimizer_learning_rate(optimizer),
+            "gradient_norm": {
+                "mean_pre_clip": (
+                    sum(gradient_norms) / len(gradient_norms)
+                    if gradient_norms
+                    else None
+                ),
+                "max_pre_clip": max(gradient_norms) if gradient_norms else None,
+                "last_pre_clip": gradient_norms[-1] if gradient_norms else None,
+                "num_optimizer_updates": len(gradient_norms),
+            },
+            "diagnostic_validations": diagnostic_validations,
             "train_telemetry": telemetry,
             "validation_telemetry": validation_telemetry,
             "throughput": {
@@ -721,6 +785,8 @@ def run_training(
 
         if validation["total"] < best_validation_loss:
             best_validation_loss = validation["total"]
+            best_epoch = epoch
+            best_step = global_step
             save_reward_checkpoint(
                 run_dir / "best.pt",
                 model=model,
@@ -728,6 +794,7 @@ def run_training(
                 training_config=checkpoint_metadata,
                 epoch=epoch,
                 validation_loss=best_validation_loss,
+                global_step=global_step,
             )
 
         (run_dir / "history.json").write_text(
@@ -746,6 +813,8 @@ def run_training(
             global_step=global_step,
             validation_loss=validation["total"],
             best_validation_loss=best_validation_loss,
+            best_epoch=best_epoch,
+            best_step=best_step,
             history=history,
             signature=signature,
         )
@@ -761,6 +830,9 @@ def run_training(
         "val_nodes": len(val_data),
         "epochs": epochs,
         "best_validation_loss": best_validation_loss,
+        "best_epoch": best_epoch,
+        "best_step": best_step,
+        "scheduler": scheduler_metadata,
         "best_checkpoint": str(run_dir / "best.pt"),
         "resume_checkpoint": str(last_checkpoint_path),
         "checkpoint_policy": (
@@ -771,7 +843,7 @@ def run_training(
         ),
         "threshold_status": "not_calibrated_during_training",
         "threshold_rule": (
-            "calibrate on validation trajectories in scripts/07_eval_all.py"
+            "calibrate evaluation thresholds on validation data in scripts/07_eval_all.py"
         ),
     }
     (run_dir / "run.json").write_text(

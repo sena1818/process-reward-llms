@@ -19,6 +19,9 @@ from prm_pref.training.configuration import (  # noqa: E402
     with_pilot_profile,
     with_smoke_profile,
 )
+from prm_pref.training.scheduling import (  # noqa: E402
+    build_linear_warmup_decay_scheduler,
+)
 from prm_pref.utils.config import load_config  # noqa: E402
 
 
@@ -74,6 +77,45 @@ class FakePairTokenizer(FakeTokenizer):
 
 
 class ConfigurationTests(unittest.TestCase):
+    def test_v1_configs_freeze_one_epoch_and_diagnostic_validation(self) -> None:
+        """The confirmatory protocol is distinct from the archived V0 runs."""
+
+        config_paths = [
+            PROJECT_ROOT
+            / "experiments/qwen_lora_v1/train_pointwise.yaml",
+            PROJECT_ROOT
+            / "experiments/qwen_lora_v1/train_pairwise.yaml",
+            PROJECT_ROOT
+            / "experiments/qwen_lora_v1/train_hybrid.yaml",
+        ]
+        for path in config_paths:
+            config = load_config(path)
+            validate_training_config(config)
+            self.assertEqual(config["training"]["epochs"], 1)
+            self.assertEqual(
+                config["training"]["eval_every_optimizer_steps"], 150
+            )
+            self.assertTrue(
+                config["output_dir"].endswith("qwen_lora_v1_runs")
+            )
+
+    def test_linear_schedule_reaches_zero_inside_a_one_epoch_budget(self) -> None:
+        """The fixed one-epoch budget owns the complete schedule."""
+
+        import torch
+
+        parameter = torch.nn.Parameter(torch.tensor(1.0))
+        optimizer = torch.optim.AdamW([parameter], lr=1e-4)
+        scheduler = build_linear_warmup_decay_scheduler(
+            optimizer,
+            total_steps=100,
+            warmup_ratio=0.06,
+        )
+        for _ in range(100):
+            optimizer.step()
+            scheduler.step()
+        self.assertEqual(optimizer.param_groups[0]["lr"], 0.0)
+
     def test_checked_in_configs_are_valid_and_signatures_are_stable(self) -> None:
         config_paths = [
             PROJECT_ROOT / "configs/train_pointwise.yaml",

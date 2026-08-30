@@ -160,7 +160,11 @@ def validate_training_config(config: dict[str, Any]) -> None:
             raise ValueError(f"training.{key} must be positive")
     if int(training.get("num_workers", 0)) < 0:
         raise ValueError("training.num_workers must be non-negative")
-    for key in ("max_steps_per_epoch", "max_validation_batches"):
+    for key in (
+        "max_steps_per_epoch",
+        "max_validation_batches",
+        "eval_every_optimizer_steps",
+    ):
         value = training.get(key)
         if value is not None and int(value) <= 0:
             raise ValueError(f"training.{key} must be positive when set")

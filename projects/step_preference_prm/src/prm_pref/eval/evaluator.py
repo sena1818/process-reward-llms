@@ -58,6 +58,16 @@ def _flatten_nodes(nodes: list[dict]) -> tuple[list[float], list[int]]:
     )
 
 
+def _write_jsonl(path: Path, records: list[dict]) -> None:
+    """Atomically persist forward-pass scores for offline analysis."""
+
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    with temporary.open("w", encoding="utf-8") as handle:
+        for record in records:
+            handle.write(json.dumps(record, sort_keys=True) + "\n")
+    temporary.replace(path)
+
+
 def evaluate_run(
     *,
     project_root: Path,
@@ -94,6 +104,8 @@ def evaluate_run(
     batch_size = int(eval_cfg.get("batch_size", 16))
     num_workers = int(eval_cfg.get("num_workers", 0))
     seed = int(eval_cfg.get("seed", 42))
+    report_first_error = bool(eval_cfg.get("report_first_error", True))
+    save_scores = bool(eval_cfg.get("save_scores", False))
     loader_kwargs = {
         "num_workers": num_workers,
         "pin_memory": device.type == "cuda",
@@ -152,23 +164,24 @@ def evaluate_run(
         )
         scored_nodes[split] = nodes
 
-        trajectories = score_trajectories(
-            model=model,
-            packer=packer,
-            path=trajectories_dir / f"{split}.jsonl",
-            batch_size=batch_size,
-            device=device,
-            precision=precision,
-            max_trajectories=_optional_int(
-                eval_cfg.get("max_trajectories")
-            ),
-            seed=seed + split_index,
-        )
-        scored_trajectories[split] = trajectories
         split_results[split] = {
             "pairwise": node_macro_pairwise_metrics(nodes),
-            "num_trajectories": len(trajectories),
         }
+        if report_first_error:
+            trajectories = score_trajectories(
+                model=model,
+                packer=packer,
+                path=trajectories_dir / f"{split}.jsonl",
+                batch_size=batch_size,
+                device=device,
+                precision=precision,
+                max_trajectories=_optional_int(
+                    eval_cfg.get("max_trajectories")
+                ),
+                seed=seed + split_index,
+            )
+            scored_trajectories[split] = trajectories
+            split_results[split]["num_trajectories"] = len(trajectories)
 
         if bool(eval_cfg.get("report_full_pointwise", True)):
             point_dataset = IndexedJsonlDataset(
@@ -222,19 +235,6 @@ def evaluate_run(
             )
         )
 
-    # This is deliberately the only first-error threshold-selection call.
-    calibration = select_first_error_threshold(
-        scored_trajectories["val"],
-        max_candidates=int(eval_cfg.get("threshold_candidates", 201)),
-    )
-    fixed_threshold = float(calibration["threshold"])
-    split_results["val"]["first_error"] = calibration[
-        "validation_first_error"
-    ]
-    split_results["test"]["first_error"] = first_error_metrics(
-        scored_trajectories["test"],
-        fixed_threshold,
-    )
     bootstrap_samples = int(eval_cfg.get("bootstrap_samples", 1000))
 
     def node_metrics(records: list[dict]) -> dict[str, float]:
@@ -250,34 +250,70 @@ def evaluate_run(
             "pairwise_accuracy": float(pairwise["accuracy"]),
         }
 
-    known_test_trajectories = [
-        trajectory
-        for trajectory in scored_trajectories["test"]
-        if trajectory.get("first_error_index") is not None
-    ]
-
-    def trajectory_metrics(records: list[dict]) -> dict[str, float]:
-        metrics = first_error_metrics(records, fixed_threshold)
-        return {
-            "first_error_exact": float(metrics["exact_match"]),
-            "first_error_within_1": float(metrics["within_1"]),
-            "first_error_mae": float(metrics["mean_absolute_error"]),
-        }
-
     confidence_intervals = {
         "strict_nodes": problem_cluster_bootstrap(
             scored_nodes["test"],
             node_metrics,
             num_samples=bootstrap_samples,
             seed=seed,
-        ),
-        "known_first_error_trajectories": problem_cluster_bootstrap(
-            known_test_trajectories,
-            trajectory_metrics,
-            num_samples=bootstrap_samples,
-            seed=seed + 1,
-        ),
+        )
     }
+    calibration = None
+    if report_first_error:
+        # This is deliberately the only first-error threshold-selection call.
+        calibration = select_first_error_threshold(
+            scored_trajectories["val"],
+            max_candidates=int(eval_cfg.get("threshold_candidates", 201)),
+        )
+        fixed_threshold = float(calibration["threshold"])
+        split_results["val"]["first_error"] = calibration[
+            "validation_first_error"
+        ]
+        split_results["test"]["first_error"] = first_error_metrics(
+            scored_trajectories["test"],
+            fixed_threshold,
+        )
+        known_test_trajectories = [
+            trajectory
+            for trajectory in scored_trajectories["test"]
+            if trajectory.get("first_error_index") is not None
+        ]
+
+        def trajectory_metrics(records: list[dict]) -> dict[str, float]:
+            metrics = first_error_metrics(records, fixed_threshold)
+            return {
+                "first_error_exact": float(metrics["exact_match"]),
+                "first_error_within_1": float(metrics["within_1"]),
+                "first_error_mae": float(metrics["mean_absolute_error"]),
+            }
+
+        confidence_intervals["known_first_error_trajectories"] = (
+            problem_cluster_bootstrap(
+                known_test_trajectories,
+                trajectory_metrics,
+                num_samples=bootstrap_samples,
+                seed=seed + 1,
+            )
+        )
+
+    score_artifacts: dict[str, dict[str, dict[str, str | int]]] = {}
+    if save_scores:
+        for split in ("val", "test"):
+            node_path = run_dir / f"strict_node_scores_{split}.jsonl"
+            _write_jsonl(node_path, scored_nodes[split])
+            score_artifacts[split] = {
+                "strict_nodes": {
+                    "path": node_path.name,
+                    "records": len(scored_nodes[split]),
+                }
+            }
+            if report_first_error:
+                trajectory_path = run_dir / f"trajectory_scores_{split}.jsonl"
+                _write_jsonl(trajectory_path, scored_trajectories[split])
+                score_artifacts[split]["trajectories"] = {
+                    "path": trajectory_path.name,
+                    "records": len(scored_trajectories[split]),
+                }
 
     training_cfg = checkpoint.get("training_config", {})
     result = {
@@ -296,10 +332,12 @@ def evaluate_run(
             else "lowest validation loss of this run's own objective"
         ),
         "checkpoint_epoch": checkpoint.get("epoch"),
+        "checkpoint_optimizer_step": checkpoint.get("global_step"),
         "planned_epochs": training_cfg.get("planned_epochs"),
         "checkpoint_validation_loss": checkpoint.get("validation_loss"),
         "step_threshold_calibration": step_calibration,
         "threshold_calibration": calibration,
+        "score_artifacts": score_artifacts,
         "validation": split_results["val"],
         "test": split_results["test"],
         "test_confidence_intervals": confidence_intervals,
@@ -318,7 +356,12 @@ def build_evaluation_summary(
     results: list[dict],
     *,
     selection_seed: int = 42,
+    selection_rule: str = "first_error_then_pairwise",
 ) -> dict:
+    if selection_rule not in {"first_error_then_pairwise", "report_all"}:
+        raise ValueError(
+            "selection_rule must be first_error_then_pairwise or report_all"
+        )
     rows = []
     for result in results:
         rows.append(
@@ -339,9 +382,9 @@ def build_evaluation_summary(
                 "val_pairwise_accuracy": result["validation"]["pairwise"][
                     "accuracy"
                 ],
-                "val_first_error_within_1": result["validation"][
-                    "first_error"
-                ]["within_1"],
+                "val_first_error_within_1": result["validation"].get(
+                    "first_error", {}
+                ).get("within_1"),
                 "test_step_macro_f1": result["test"]["step"]["macro_f1"],
                 "test_step_auroc": result["test"]["step"]["auroc"],
                 "test_step_brier": result["test"]["step"]["brier"],
@@ -349,12 +392,12 @@ def build_evaluation_summary(
                 "test_pairwise_accuracy": result["test"]["pairwise"][
                     "accuracy"
                 ],
-                "test_first_error_exact": result["test"]["first_error"][
-                    "exact_match"
-                ],
-                "test_first_error_within_1": result["test"]["first_error"][
-                    "within_1"
-                ],
+                "test_first_error_exact": result["test"].get(
+                    "first_error", {}
+                ).get("exact_match"),
+                "test_first_error_within_1": result["test"].get(
+                    "first_error", {}
+                ).get("within_1"),
             }
         )
     aggregate_keys = [
@@ -446,6 +489,7 @@ def build_evaluation_summary(
         if row["mode"] == "hybrid"
         and (full_budget is None or row["train_nodes"] == full_budget)
         and row["seed"] == selection_seed
+        and row["val_first_error_within_1"] is not None
     ]
     if not selection_rows:
         selection_rows = [
@@ -456,6 +500,7 @@ def build_evaluation_summary(
                 full_budget is None
                 or row["train_nodes"] == full_budget
             )
+            and row["val_first_error_within_1"] is not None
         ]
     selected_row = (
         max(
@@ -465,7 +510,7 @@ def build_evaluation_summary(
                 row["val_pairwise_accuracy"],
             ),
         )
-        if selection_rows
+        if selection_rule == "first_error_then_pairwise" and selection_rows
         else None
     )
     selected_aggregate = next(
@@ -500,6 +545,8 @@ def build_evaluation_summary(
             f"{selection_seed} by validation first-error within +/-1; "
             "validation node-macro pairwise accuracy breaks ties; "
             "replicate seeds do not retune lambda"
+            if selection_rule == "first_error_then_pairwise"
+            else "report all objectives and lambdas; no post-hoc hybrid lambda selection"
         ),
         "selected_hybrid_lambda": (
             selected_row["lambda_pair"] if selected_row else None
