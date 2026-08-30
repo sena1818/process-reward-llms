@@ -150,6 +150,14 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(pilot["training"]["max_steps_per_epoch"], 200)
         self.assertTrue(pilot["output_dir"].endswith("_pilot"))
 
+    def test_v1_pilot_exercises_diagnostic_validation(self) -> None:
+        config = load_config(
+            PROJECT_ROOT / "experiments/qwen_lora_v1/train_hybrid.yaml"
+        )
+        pilot = with_pilot_profile(config)
+        self.assertEqual(pilot["training"]["eval_every_optimizer_steps"], 6)
+        self.assertEqual(config["training"]["eval_every_optimizer_steps"], 150)
+
     def test_experiment_overrides_are_explicit_and_non_mutating(self) -> None:
         config = load_config(
             PROJECT_ROOT / "experiments/qwen_lora_main/train_hybrid.yaml"

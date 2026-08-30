@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import math
 from typing import Any
 
 
@@ -78,6 +79,18 @@ def with_pilot_profile(config: dict[str, Any]) -> dict[str, Any]:
     training["max_steps_per_epoch"] = 200
     training["max_validation_batches"] = 25
     training["log_every"] = 10
+    if training.get("eval_every_optimizer_steps") is not None:
+        # The production V1 cadence is 150 updates. The 200-local-step pilot
+        # has only 13 updates with accumulation=16, so lower it only here to
+        # exercise the diagnostic-validation path before formal submission.
+        pilot_updates = math.ceil(
+            int(training["max_steps_per_epoch"])
+            / int(training.get("gradient_accumulation_steps", 1))
+        )
+        training["eval_every_optimizer_steps"] = min(
+            int(training["eval_every_optimizer_steps"]),
+            max(1, pilot_updates // 2),
+        )
     result["output_dir"] = f"{result.get('output_dir', 'outputs/runs')}_pilot"
     return result
 
