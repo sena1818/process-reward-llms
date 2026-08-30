@@ -4,10 +4,11 @@ Seminar project proposal for **Process Reward in Large Language Models**.
 
 Primary paper: Lightman et al., 2023, *Let's Verify Step by Step*.
 
-> **当前执行入口（2026-07-30）**：本文件保留项目论证和历史设计。
-> 训练代码结构、严格主实验、UniCluster 命令和资源决策请以
-> [`TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md`](TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md)
-> 为准；`RUNBOOK_V0.md` 仅作为 RoBERTa sanity baseline 的旧说明。
+> **当前执行入口（2026-08-31）**：本文件保留项目论证和历史设计。
+> 已执行实验的记录、2026-08-30 审计的结论和 V1 确认性实验的预注册见
+> [`RUNBOOK_V1.md`](RUNBOOK_V1.md)。训练代码结构、UniCluster 命令和资源决策见
+> [`TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md`](TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md)；
+> `RUNBOOK_V0.md` 仅作为 RoBERTa sanity baseline 的旧说明。
 
 ## 1. Project in One Sentence
 

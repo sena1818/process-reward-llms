@@ -3,7 +3,9 @@
 > **Historical encoder-sanity runbook.** The strict main experiment is now
 > Qwen2.5-Math-1.5B LoRA on a shared node-balanced cohort. Use
 > [`TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md`](TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md)
-> for current commands and compute guidance.
+> for current commands and compute guidance, and
+> [`RUNBOOK_V1.md`](RUNBOOK_V1.md) for the experiment record and the
+> pre-registered V1 protocol.
 
 ## What is trained
 
