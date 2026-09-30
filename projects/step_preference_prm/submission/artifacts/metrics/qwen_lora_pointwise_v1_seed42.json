@@ -1,0 +1,128 @@
+{
+  "run_name": "qwen_lora_pointwise_v1_seed42",
+  "mode": "pointwise",
+  "backend": "causal_lora",
+  "model_name": "Qwen/Qwen2.5-Math-1.5B",
+  "max_length": 2048,
+  "lambda_pair": null,
+  "seed": 42,
+  "train_nodes": 47852,
+  "checkpoint": "last",
+  "checkpoint_selection_rule": "fixed final epoch, identical for every objective",
+  "checkpoint_epoch": 1,
+  "checkpoint_optimizer_step": 1496,
+  "planned_epochs": 1,
+  "checkpoint_validation_loss": 0.4896465174178832,
+  "step_threshold_calibration": {
+    "threshold": -0.067626953125,
+    "selection_split": "validation",
+    "selection_metric": "step_macro_f1",
+    "num_candidate_thresholds": 200,
+    "validation_step": {
+      "n": 25442,
+      "threshold": -0.067626953125,
+      "accuracy": 0.7614574325917773,
+      "macro_f1": 0.760303851901277,
+      "f1_positive": 0.7436752967014403,
+      "f1_negative": 0.7769324071011137,
+      "auroc": 0.8416266146371613,
+      "brier": 0.16210445851314362,
+      "ece_10": 0.012126672728868748,
+      "confusion": {
+        "tp": 8804,
+        "tn": 10569,
+        "fp": 2891,
+        "fn": 3178
+      }
+    }
+  },
+  "threshold_calibration": null,
+  "score_artifacts": {
+    "val": {
+      "strict_nodes": {
+        "path": "strict_node_scores_val.jsonl",
+        "records": 5751
+      }
+    },
+    "test": {
+      "strict_nodes": {
+        "path": "strict_node_scores_test.jsonl",
+        "records": 4825
+      }
+    }
+  },
+  "validation": {
+    "pairwise": {
+      "n_nodes": 5751,
+      "n_pairs": 23236,
+      "accuracy": 0.8426130859229454,
+      "mean_margin": 2.0035332870089033,
+      "flat_accuracy": 0.8338354277844724,
+      "flat_ties": 17
+    },
+    "step": {
+      "n": 25442,
+      "threshold": -0.067626953125,
+      "accuracy": 0.7614574325917773,
+      "macro_f1": 0.760303851901277,
+      "f1_positive": 0.7436752967014403,
+      "f1_negative": 0.7769324071011137,
+      "auroc": 0.8416266146371613,
+      "brier": 0.16210445851314362,
+      "ece_10": 0.012126672728868748,
+      "confusion": {
+        "tp": 8804,
+        "tn": 10569,
+        "fp": 2891,
+        "fn": 3178
+      }
+    }
+  },
+  "test": {
+    "pairwise": {
+      "n_nodes": 4825,
+      "n_pairs": 20519,
+      "accuracy": 0.8386581133316889,
+      "mean_margin": 1.9590892243035922,
+      "flat_accuracy": 0.8357619767045178,
+      "flat_ties": 11
+    },
+    "step": {
+      "n": 22043,
+      "threshold": -0.067626953125,
+      "accuracy": 0.7615569568570522,
+      "macro_f1": 0.7602443478650851,
+      "f1_positive": 0.7425044091710759,
+      "f1_negative": 0.7779842865590944,
+      "auroc": 0.8416566562121648,
+      "brier": 0.1613838752290828,
+      "ece_10": 0.01127235029682162,
+      "confusion": {
+        "tp": 7578,
+        "tn": 9209,
+        "fp": 2648,
+        "fn": 2608
+      }
+    }
+  },
+  "test_confidence_intervals": {
+    "strict_nodes": {
+      "resampling_unit": "problem_id",
+      "n_clusters": 984,
+      "n_bootstrap_samples": 1000,
+      "confidence_level": 0.95,
+      "metrics": {
+        "step_macro_f1": {
+          "estimate": 0.7602443478650851,
+          "lower": 0.7507868918680027,
+          "upper": 0.77001987816529
+        },
+        "pairwise_accuracy": {
+          "estimate": 0.8386581133316889,
+          "lower": 0.8290378018068543,
+          "upper": 0.8486248096800103
+        }
+      }
+    }
+  }
+}

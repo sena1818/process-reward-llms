@@ -1,10 +1,13 @@
 # Step Preference Modeling for Process Reward Models
 
-Seminar project proposal for **Process Reward in Large Language Models**.
+Seminar project for **Process Reward in Large Language Models**.
 
 Primary paper: Lightman et al., 2023, *Let's Verify Step by Step*.
 
-> **当前执行入口（2026-08-31）**：本文件保留项目论证和历史设计。
+> **提交入口（2026-09-30）**：V1 已完成（18 runs，3 seeds，固定 1 epoch）。
+> 安装、数据构建、最终命令和结果见 [`SUBMISSION_README.md`](SUBMISSION_README.md)，
+> AI 使用范围见 [`AI_USAGE.md`](AI_USAGE.md)。本文件保留项目论证与历史设计；
+> 标为计划或扩展的内容不代表已经执行。
 > 已执行实验的记录、2026-08-30 审计的结论和 V1 确认性实验的预注册见
 > [`RUNBOOK_V1.md`](RUNBOOK_V1.md)。训练代码结构、UniCluster 命令和资源决策见
 > [`TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md`](TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md)；
@@ -12,7 +15,7 @@ Primary paper: Lightman et al., 2023, *Let's Verify Step by Step*.
 
 ## 1. Project in One Sentence
 
-This project derives **exact-prefix `$+1>-1$` step comparisons** from PRM800K ratings and trains a scalar pairwise / hybrid Process Reward Model (PRM), then compares it against a standard pointwise PRM on process-level and outcome-level evaluations. The neutral label is a separate V1 question, not silently assumed to be an ordinal midpoint in V0.
+This project derives **exact-prefix `$+1>-1$` step comparisons** from PRM800K ratings and compares pointwise, pairwise, and hybrid Process Reward Models on the same annotated candidate cohort. The completed V1 experiment uses binary labels; neutral-label and outcome-level evaluations remain future work.
 
 Short version:
 
@@ -56,8 +59,9 @@ To exercise the Qwen causal-LoRA path on a laptop, add `--model` and
 6.1 of the [training and UniCluster
 guide](TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md) for the full local sequence.
 
-See `TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md` for the current experiment
-matrix and UniCluster execution flow.
+See `SUBMISSION_README.md` for the final commands and `RUNBOOK_V1.md` for
+the protocol. `TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md` retains the earlier
+V0 setup and shared cluster instructions.
 
 ## 2. Motivation
 
@@ -106,7 +110,7 @@ The pair term uses the Bradley--Terry form that also appears in preference-learn
 
 The realistic claim is:
 
-> In a small-scale seminar setting, hybrid pointwise + pairwise supervision can improve label efficiency and first-error localization compared with a pointwise PRM baseline.
+> In the completed fixed-budget comparison, hybrid supervision modestly improves same-prefix ranking. Pairwise-only training weakens global ranking and classification. Label efficiency and solver accuracy were not tested; the degenerate first-error metric is excluded.
 
 ## 4. Relationship to Other Seminar Papers
 
@@ -451,8 +455,8 @@ Implementation status: the strict main pipeline now uses
 `data/processed/nodes_v0`, one shared node DataLoader, one forward per
 candidate, and the same-cohort node-balanced aggregation above. Flat point and
 pair artifacts remain only for audit, compatibility, and optional secondary
-evaluation. Qwen-LoRA results must still be produced by the UniCluster
-smoke/pilot/main sequence before numerical claims are made.
+evaluation. Completed Qwen-LoRA V1 results are archived under
+`submission/artifacts/`; the reproduction entry point is `SUBMISSION_README.md`.
 
 Use
 
@@ -928,7 +932,10 @@ Suggested 10-minute structure:
    - pairwise process supervision is a lightweight extension of PRM training
    - process-level evaluation is necessary
 
-## 20. Current Minimal Commands
+## 20. Historical Encoder Sanity Commands
+
+These commands exercise the earlier encoder path. For the report's Qwen V1
+experiment, use `SUBMISSION_README.md` and `experiments/qwen_lora_v1/`.
 
 ```bash
 # 0. Audit data
@@ -949,11 +956,11 @@ python scripts/06_train_hybrid.py --smoke
 python scripts/07_eval_all.py --config configs/eval.yaml
 ```
 
-## 21. Final Claim to Aim For
+## 21. Supported Final Claim
 
 The final seminar claim should be modest and precise:
 
-> We extend the process-supervised PRM setup from `Let's Verify Step by Step` by converting step-level human labels into ordinal preferences. In a small-scale reproduction, a hybrid pointwise + pairwise PRM improves process-level ranking and first-error localization, especially under limited label budgets.
+> On the same strict binary PRM800K cohort and a fixed one-epoch budget, adding a same-prefix pairwise term modestly improves local ranking. Pure pairwise training reduces global AUROC, Macro-F1, and raw probability calibration. These results do not establish improved first-error localisation, label efficiency, or final-answer accuracy.
 
 Do not claim:
 

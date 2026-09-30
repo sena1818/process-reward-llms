@@ -1,0 +1,3992 @@
+{
+  "qwen_lora_hybrid_v1_lam0.1_seed123": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5099520660766301,
+      "validation": {
+        "total": 0.5371409937975158,
+        "pointwise": 0.5012237304937236,
+        "pairwise": 0.3591726343290774
+      },
+      "elapsed_seconds": 9625.1473031044,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.5370267331998617,
+        "max_pre_clip": 12.66543960571289,
+        "last_pre_clip": 3.7063214778900146,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.6139436035317103,
+            "pointwise": 0.5687877470629047,
+            "pairwise": 0.451558565596869
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 240.02944016456604
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.6021065726277725,
+            "pointwise": 0.5620137989324107,
+            "pairwise": 0.400927733434965
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.2016305923462
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.5725523050847914,
+            "pointwise": 0.5345513649120308,
+            "pairwise": 0.38000940022349794
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.2190136909485
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.5618961854481402,
+            "pointwise": 0.5249211000496564,
+            "pairwise": 0.3697508588887348
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.71977186203003
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.5573401739391695,
+            "pointwise": 0.5200860570967871,
+            "pairwise": 0.37254116571195967
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.37406468391418
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.5485125088241904,
+            "pointwise": 0.5115671507836714,
+            "pairwise": 0.369453574616771
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.62950682640076
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.5425289862623548,
+            "pointwise": 0.5054074730526529,
+            "pairwise": 0.37121512768574744
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.34364223480225
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.5424914143175027,
+            "pointwise": 0.5054546374069092,
+            "pairwise": 0.37036776614856864
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.42824578285217
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.5354381432130718,
+            "pointwise": 0.49939330276914773,
+            "pairwise": 0.36044840071945633
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.9866659641266
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 4.971560277790895,
+        "candidates_per_second": 21.834471035286604,
+        "tokens_per_second": 6683.416572674373
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam0.1_seed42": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5108161625810509,
+      "validation": {
+        "total": 0.5218799056550396,
+        "pointwise": 0.4874955309026035,
+        "pairwise": 0.34384374774735305
+      },
+      "elapsed_seconds": 9433.851140260696,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.5866761917577072,
+        "max_pre_clip": 35.06889724731445,
+        "last_pre_clip": 2.5298407077789307,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.6182583320702579,
+            "pointwise": 0.5740714389186302,
+            "pairwise": 0.4418689274949585
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 237.79629564285278
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.5693941642213668,
+            "pointwise": 0.5308333799084919,
+            "pairwise": 0.3856078459018263
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.17374753952026
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.556434664373252,
+            "pointwise": 0.5201432575839143,
+            "pairwise": 0.3629140687804884
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.29650259017944
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.5388226012440687,
+            "pointwise": 0.5030120166617463,
+            "pairwise": 0.3581058481001135
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.16744232177734
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.5413352576282164,
+            "pointwise": 0.505212208345193,
+            "pairwise": 0.36123048655178325
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.17325258255005
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.5328868324291062,
+            "pointwise": 0.4976490452701663,
+            "pairwise": 0.35237787181417274
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.32665991783142
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.5288937137015404,
+            "pointwise": 0.4939117779153012,
+            "pairwise": 0.3498193592945973
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.46845769882202
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.5259291908882365,
+            "pointwise": 0.4911572904436303,
+            "pairwise": 0.34771900589608135
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.4067826271057
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.5240262930775866,
+            "pointwise": 0.4895532496171171,
+            "pairwise": 0.3447304365194853
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.1847403049469
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.072371748138232,
+        "candidates_per_second": 22.277222406351477,
+        "tokens_per_second": 6818.940435201984
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam0.1_seed7": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5107246035938847,
+      "validation": {
+        "total": 0.5151731921183381,
+        "pointwise": 0.48042225963632823,
+        "pairwise": 0.34750932779041993
+      },
+      "elapsed_seconds": 9444.963541507721,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.3618565907771574,
+        "max_pre_clip": 24.731245040893555,
+        "last_pre_clip": 1.6879591941833496,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.6331866021322968,
+            "pointwise": 0.587682375502035,
+            "pairwise": 0.4550422707164812
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 239.02591848373413
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.5771532219568557,
+            "pointwise": 0.5374795764534396,
+            "pairwise": 0.3967364443123724
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.57888293266296
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.5447777837561516,
+            "pointwise": 0.5072347266355652,
+            "pairwise": 0.3754305724372627
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.7693738937378
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.5468127809230441,
+            "pointwise": 0.5094078662415791,
+            "pairwise": 0.3740491443618917
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.41311526298523
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.5424143195338839,
+            "pointwise": 0.505978491177374,
+            "pairwise": 0.36435828563664774
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.2203507423401
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.5489932627724349,
+            "pointwise": 0.5128501204434032,
+            "pairwise": 0.36143141991643934
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.03568172454834
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.5259455035943774,
+            "pointwise": 0.49043338360153804,
+            "pairwise": 0.35512119525607266
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.29931044578552
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.5214032488913147,
+            "pointwise": 0.48626967586759606,
+            "pairwise": 0.3513357295949285
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.09562182426453
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.5161179440619738,
+            "pointwise": 0.48140477991129,
+            "pairwise": 0.3471316401526873
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.63510537147522
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.0664038870775014,
+        "candidates_per_second": 22.251012306867167,
+        "tokens_per_second": 6810.917661809316
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam0.3_seed123": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5776930713940964,
+      "validation": {
+        "total": 0.5874434039242846,
+        "pointwise": 0.4846173229424399,
+        "pairwise": 0.34275359103229097
+      },
+      "elapsed_seconds": 9514.526042461395,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.760028018511553,
+        "max_pre_clip": 13.208008766174316,
+        "last_pre_clip": 3.3323557376861572,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.7106451253915036,
+            "pointwise": 0.5760618837330367,
+            "pairwise": 0.448610786113443
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 237.53517317771912
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.6794796893439528,
+            "pointwise": 0.5618038635277951,
+            "pairwise": 0.39225273612589345
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.43019652366638
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.6387723143920341,
+            "pointwise": 0.5271018068596832,
+            "pairwise": 0.3722350101184713
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.81929111480713
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.624499808667204,
+            "pointwise": 0.5157521372566097,
+            "pairwise": 0.36249222218766197
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.6623318195343
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.6208678593927416,
+            "pointwise": 0.5122644777112246,
+            "pairwise": 0.36201125727566436
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.4955382347107
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.6063755077240758,
+            "pointwise": 0.4995703862462121,
+            "pairwise": 0.35601705685193136
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.05737447738647
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.5955125490461634,
+            "pointwise": 0.49067838865971486,
+            "pairwise": 0.3494471866835684
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.82102417945862
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.5945883870352829,
+            "pointwise": 0.4900732715323456,
+            "pairwise": 0.3483837018344293
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.42944884300232
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.587978628656591,
+            "pointwise": 0.4846882276163166,
+            "pairwise": 0.3443013217047225
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.39237809181213
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.029362449211474,
+        "candidates_per_second": 22.088330943874517,
+        "tokens_per_second": 6761.121753507567
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam0.3_seed42": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5772298552595504,
+      "validation": {
+        "total": 0.5897539382943939,
+        "pointwise": 0.48691797550813654,
+        "pairwise": 0.3427865294925188
+      },
+      "elapsed_seconds": 9413.335172891617,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.8061520300287612,
+        "max_pre_clip": 35.449493408203125,
+        "last_pre_clip": 2.7816357612609863,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.7152518097410366,
+            "pointwise": 0.5857376079417543,
+            "pairwise": 0.43171398963314767
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 237.33984422683716
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.6493035751650632,
+            "pointwise": 0.5346782513907258,
+            "pairwise": 0.3820843958174264
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.2011570930481
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.6224370092138003,
+            "pointwise": 0.5147346502966392,
+            "pairwise": 0.35900784636421934
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.05936360359192
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.6203654039903136,
+            "pointwise": 0.5123967214929106,
+            "pairwise": 0.35989559360154244
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.13748359680176
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.6170776880289074,
+            "pointwise": 0.5094175636923804,
+            "pairwise": 0.3588670652422557
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.1596360206604
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.607290109672291,
+            "pointwise": 0.5015543043053766,
+            "pairwise": 0.3524526715077171
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.64443135261536
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.5997080821780366,
+            "pointwise": 0.49472365807790464,
+            "pairwise": 0.34994806702519354
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.23019552230835
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.5964647003089505,
+            "pointwise": 0.49218463064421575,
+            "pairwise": 0.3476002148965186
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.007506608963
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.5909043796745265,
+            "pointwise": 0.48779880084321514,
+            "pairwise": 0.34368524573328124
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.2350790500641
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.083426768633871,
+        "candidates_per_second": 22.3257746739132,
+        "tokens_per_second": 6833.80202855767
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam0.3_seed7": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5779309740366261,
+      "validation": {
+        "total": 0.5839473101506543,
+        "pointwise": 0.4804592364208737,
+        "pairwise": 0.3449602344134407
+      },
+      "elapsed_seconds": 9514.690313100815,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.5760730690656497,
+        "max_pre_clip": 25.573286056518555,
+        "last_pre_clip": 2.4300975799560547,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.7184048684197619,
+            "pointwise": 0.5858429353188648,
+            "pairwise": 0.4418730924511304
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 238.5278947353363
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.6603686304750328,
+            "pointwise": 0.5448874405230093,
+            "pairwise": 0.38493728587914655
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.22980666160583
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.6172492150596237,
+            "pointwise": 0.5062509276798094,
+            "pairwise": 0.36999427784432504
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.76667308807373
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.6240839555074476,
+            "pointwise": 0.5139591345536648,
+            "pairwise": 0.36708271979036755
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.74266505241394
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.6088235253117392,
+            "pointwise": 0.5009721977319785,
+            "pairwise": 0.35950440924839444
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.4073703289032
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.6163550567790708,
+            "pointwise": 0.5102705105328182,
+            "pairwise": 0.35361513831715696
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.52860832214355
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.6008481948070165,
+            "pointwise": 0.494956161349447,
+            "pairwise": 0.3529734315450731
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.60324835777283
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.5940346024675258,
+            "pointwise": 0.4888260139214269,
+            "pairwise": 0.3506952802140678
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.11926364898682
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.5858023381662294,
+            "pointwise": 0.4822092105141724,
+            "pairwise": 0.3453104095820126
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.94527983665466
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.029275617527182,
+        "candidates_per_second": 22.087949589975604,
+        "tokens_per_second": 6761.005023087859
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam0.5_seed123": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6461987190866968,
+      "validation": {
+        "total": 0.6562715050521633,
+        "pointwise": 0.48620199280870496,
+        "pairwise": 0.3401390245050539
+      },
+      "elapsed_seconds": 9707.225921154022,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 3.0521792946333552,
+        "max_pre_clip": 12.651333808898926,
+        "last_pre_clip": 4.016160011291504,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.7955285463306597,
+            "pointwise": 0.5741706059779567,
+            "pairwise": 0.4427158823947744
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 239.31215620040894
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.7624855364504907,
+            "pointwise": 0.5671374869696929,
+            "pairwise": 0.3906960990639422
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.1819293498993
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.7130247587650635,
+            "pointwise": 0.52786490955968,
+            "pairwise": 0.3703196996194946
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.56433725357056
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.7012596274381968,
+            "pointwise": 0.5206256132657746,
+            "pairwise": 0.36126802837642286
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.6004762649536
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.6953432726779205,
+            "pointwise": 0.514698437997889,
+            "pairwise": 0.3612896695262146
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.65166473388672
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.6844158331439135,
+            "pointwise": 0.5062422856229882,
+            "pairwise": 0.3563470940063998
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.60250210762024
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.6663584877793384,
+            "pointwise": 0.49226784365651005,
+            "pairwise": 0.3481812898815844
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.35502076148987
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.6631645737026406,
+            "pointwise": 0.4901738951588025,
+            "pairwise": 0.34598135702289967
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.10993599891663
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.6566698684980093,
+            "pointwise": 0.4855345432716045,
+            "pairwise": 0.34227065136777624
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.99482417106628
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 4.929523675319099,
+        "candidates_per_second": 21.64985153400196,
+        "tokens_per_second": 6626.90551579873
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam0.5_seed42": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6441089888785858,
+      "validation": {
+        "total": 0.6565946834001556,
+        "pointwise": 0.486384457172549,
+        "pairwise": 0.3404204519839649
+      },
+      "elapsed_seconds": 9400.828508138657,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 3.0718325076096837,
+        "max_pre_clip": 35.84592056274414,
+        "last_pre_clip": 2.9047787189483643,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.7863947901595595,
+            "pointwise": 0.5735493105735971,
+            "pairwise": 0.4256909593037446
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.74291229248047
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.7333321490301876,
+            "pointwise": 0.5425750241914307,
+            "pairwise": 0.3815142501575069
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.9220871925354
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.6944163716102637,
+            "pointwise": 0.5164802369294509,
+            "pairwise": 0.35587226821135887
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.6719617843628
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.6918624060772912,
+            "pointwise": 0.514304731933164,
+            "pairwise": 0.3551153482417776
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.13677597045898
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.6886403779582633,
+            "pointwise": 0.5108566921993952,
+            "pairwise": 0.35556737049426895
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.89389491081238
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.6738297678018482,
+            "pointwise": 0.5000839007147456,
+            "pairwise": 0.3474917331552727
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.7132179737091
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.6658344117532998,
+            "pointwise": 0.4926929463253625,
+            "pairwise": 0.3462829291530652
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.89875268936157
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.6626020387408423,
+            "pointwise": 0.49015890578252713,
+            "pairwise": 0.34488626579873727
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.84082412719727
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.6583539011571288,
+            "pointwise": 0.4877091414709544,
+            "pairwise": 0.34128952062318085
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.87881517410278
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.090189652813334,
+        "candidates_per_second": 22.355476415515554,
+        "tokens_per_second": 6842.893575210742
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam0.5_seed7": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6469896928389677,
+      "validation": {
+        "total": 0.6613978892746147,
+        "pointwise": 0.48933526455910387,
+        "pairwise": 0.34412525113302145
+      },
+      "elapsed_seconds": 9489.862823486328,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.8399623212489216,
+        "max_pre_clip": 26.471261978149414,
+        "last_pre_clip": 2.9572832584381104,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.8101242046276604,
+            "pointwise": 0.5886899527104662,
+            "pairwise": 0.4428685058139548
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 239.01645183563232
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.7572029464152809,
+            "pointwise": 0.5612721668079902,
+            "pairwise": 0.39186155832455355
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.27099537849426
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.6900593241366734,
+            "pointwise": 0.5064432485438164,
+            "pairwise": 0.3672321485132018
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.12343525886536
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.7041769065539374,
+            "pointwise": 0.5214125308248815,
+            "pairwise": 0.3655287503543221
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.0731372833252
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.6928638187600641,
+            "pointwise": 0.5151669626919172,
+            "pairwise": 0.355393712100505
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.81939911842346
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.7086161898646307,
+            "pointwise": 0.5307458311687281,
+            "pairwise": 0.35574071792572465
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.11449432373047
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.6843543204923771,
+            "pointwise": 0.507828271522706,
+            "pairwise": 0.35305209863552645
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.57381081581116
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.6699394024707735,
+            "pointwise": 0.49660540426674976,
+            "pairwise": 0.3466679970219659
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.92522382736206
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.6649176962965158,
+            "pointwise": 0.49278043017991,
+            "pairwise": 0.34427453498134997
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.46799087524414
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.042433266956373,
+        "candidates_per_second": 22.14573634087502,
+        "tokens_per_second": 6778.693243151353
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam1.0_seed123": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8151623959454308,
+      "validation": {
+        "total": 0.8288829836342111,
+        "pointwise": 0.4901562776332979,
+        "pairwise": 0.33872670597224974
+      },
+      "elapsed_seconds": 9626.99509191513,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 3.7965506988572564,
+        "max_pre_clip": 15.051578521728516,
+        "last_pre_clip": 5.2589592933654785,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 1.0038122940407568,
+            "pointwise": 0.570717283164578,
+            "pairwise": 0.43309501210693024
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 238.7922122478485
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.9645400886389717,
+            "pointwise": 0.5744035884859748,
+            "pairwise": 0.3901365005549343
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.0104033946991
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.8991290698246714,
+            "pointwise": 0.5296966935360748,
+            "pairwise": 0.36943237589508
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.20016026496887
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.8874363539126039,
+            "pointwise": 0.5268383473183793,
+            "pairwise": 0.3605980061150412
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.13612532615662
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.8712147293640539,
+            "pointwise": 0.512273227229489,
+            "pairwise": 0.3589415024485685
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.16948914527893
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.8623458424136444,
+            "pointwise": 0.5063893307739498,
+            "pairwise": 0.3559565116061729
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.6431725025177
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.842817903798345,
+            "pointwise": 0.4955502640468269,
+            "pairwise": 0.34726764002762744
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.05680060386658
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.8367894687842875,
+            "pointwise": 0.49256502085925186,
+            "pairwise": 0.34422444835855165
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.72680521011353
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.8263865446105374,
+            "pointwise": 0.4871401326839996,
+            "pairwise": 0.33924641099764435
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.96370482444763
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 4.970606045097779,
+        "candidates_per_second": 21.83028016462738,
+        "tokens_per_second": 6682.1337692406405
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam1.0_seed42": [
+    {
+      "epoch": 1,
+      "train_loss": 0.812330943141908,
+      "validation": {
+        "total": 0.8249417981455127,
+        "pointwise": 0.487623866128623,
+        "pairwise": 0.3373179328590638
+      },
+      "elapsed_seconds": 9393.664759635925,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 3.7849591992755625,
+        "max_pre_clip": 36.975833892822266,
+        "last_pre_clip": 3.4213368892669678,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.9932179490165531,
+            "pointwise": 0.5743939397729307,
+            "pairwise": 0.4188240090314797
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 237.23915719985962
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.9324677873074417,
+            "pointwise": 0.5494154070775584,
+            "pairwise": 0.383052379703899
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.02894067764282
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.8847287665696958,
+            "pointwise": 0.5266390221364766,
+            "pairwise": 0.35808974586121467
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.10790491104126
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.8841268368294666,
+            "pointwise": 0.5258279830668205,
+            "pairwise": 0.35829885323617594
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.04005670547485
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.8631854164581717,
+            "pointwise": 0.5087594317210444,
+            "pairwise": 0.3544259858104721
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.46756625175476
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.8433958613505634,
+            "pointwise": 0.4993179782724986,
+            "pairwise": 0.34407788500678194
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.95562624931335
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.8377217951701467,
+            "pointwise": 0.49395253167652375,
+            "pairwise": 0.3437692630316054
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.03767704963684
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.8348281160994543,
+            "pointwise": 0.49148258014443313,
+            "pairwise": 0.3433455359702436
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.120521068573
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.8252755994123908,
+            "pointwise": 0.4874055975417514,
+            "pairwise": 0.33787000122133704
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.8434944152832
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.094071507173375,
+        "candidates_per_second": 22.372525034430254,
+        "tokens_per_second": 6848.112067658376
+      }
+    }
+  ],
+  "qwen_lora_hybrid_v1_lam1.0_seed7": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8173302709103418,
+      "validation": {
+        "total": 0.824394038958542,
+        "pointwise": 0.48573098108470386,
+        "pairwise": 0.33866305848467954
+      },
+      "elapsed_seconds": 9661.612982988358,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 3.5663625653733546,
+        "max_pre_clip": 29.023887634277344,
+        "last_pre_clip": 4.255086421966553,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 1.0380228440713062,
+            "pointwise": 0.5894816132488094,
+            "pairwise": 0.448541231115286
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 238.63435745239258
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.961839407786061,
+            "pointwise": 0.5723774327835484,
+            "pairwise": 0.389461976549049
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.44012546539307
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.870511269775645,
+            "pointwise": 0.5060785892133691,
+            "pairwise": 0.364432679736053
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.65377473831177
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.8865184487777883,
+            "pointwise": 0.5226332630474367,
+            "pairwise": 0.3638851862846756
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.34682178497314
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.8751829630073268,
+            "pointwise": 0.522850174061051,
+            "pairwise": 0.3523327899587308
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.45744156837463
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.8839162123750508,
+            "pointwise": 0.532539324664257,
+            "pairwise": 0.35137688863078054
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.95943093299866
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.8498312722644771,
+            "pointwise": 0.5037159074458676,
+            "pairwise": 0.346115365121763
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.19727087020874
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.8386657654130133,
+            "pointwise": 0.4964891284253365,
+            "pairwise": 0.3421766367023369
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.95221734046936
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.8261189764322477,
+            "pointwise": 0.48780149850010396,
+            "pairwise": 0.3383174792258903
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.62016129493713
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 4.9527961929602435,
+        "candidates_per_second": 21.752061521201306,
+        "tokens_per_second": 6658.191454497999
+      }
+    }
+  ],
+  "qwen_lora_pairwise_v1_seed123": [
+    {
+      "epoch": 1,
+      "train_loss": 0.34187820933398283,
+      "validation": {
+        "total": 0.34219179761269225,
+        "pairwise": 0.34219179761269225
+      },
+      "elapsed_seconds": 9392.05923962593,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 1.9773490897474442,
+        "max_pre_clip": 8.918469429016113,
+        "last_pre_clip": 3.215280055999756,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.44044456488663863,
+            "pairwise": 0.44044456488663863
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.8195641040802
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.3884122418390318,
+            "pairwise": 0.3884122418390318
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.92760562896729
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.3788519018259883,
+            "pairwise": 0.3788519018259883
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.41321468353271
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.36032121241945464,
+            "pairwise": 0.36032121241945464
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.06735396385193
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.3523409893673734,
+            "pairwise": 0.3523409893673734
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.97631645202637
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.35625708789340055,
+            "pairwise": 0.35625708789340055
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.95643401145935
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.3520846071075667,
+            "pairwise": 0.3520846071075667
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.9220733642578
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.3449981934377197,
+            "pairwise": 0.3449981934377197
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.6604950428009
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.3420555400103428,
+            "pairwise": 0.3420555400103428
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.77615094184875
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.09494231021331,
+        "candidates_per_second": 22.376349492485772,
+        "tokens_per_second": 6849.282714124161
+      }
+    }
+  ],
+  "qwen_lora_pairwise_v1_seed42": [
+    {
+      "epoch": 1,
+      "train_loss": 0.33694003906816894,
+      "validation": {
+        "total": 0.34526943878433114,
+        "pairwise": 0.34526943878433114
+      },
+      "elapsed_seconds": 9379.54232954979,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 1.8572964951156932,
+        "max_pre_clip": 5.878870964050293,
+        "last_pre_clip": 1.4084688425064087,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.4240089737275951,
+            "pairwise": 0.4240089737275951
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.47986316680908
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.38779230190982217,
+            "pairwise": 0.38779230190982217
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.27286529541016
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.3721186685455382,
+            "pairwise": 0.3721186685455382
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.5172884464264
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.36743570363381917,
+            "pairwise": 0.36743570363381917
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.3941879272461
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.3613329988858468,
+            "pairwise": 0.3613329988858468
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.3106746673584
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.3545562930253644,
+            "pairwise": 0.3545562930253644
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.40298628807068
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.35215309708779363,
+            "pairwise": 0.35215309708779363
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.29528069496155
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.3511904047324689,
+            "pairwise": 0.3511904047324689
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.55170607566833
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.3458375922512568,
+            "pairwise": 0.3458375922512568
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.4827847480774
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.10174146229338,
+        "candidates_per_second": 22.406210518172212,
+        "tokens_per_second": 6858.423016796357
+      }
+    }
+  ],
+  "qwen_lora_pairwise_v1_seed7": [
+    {
+      "epoch": 1,
+      "train_loss": 0.344334591541279,
+      "validation": {
+        "total": 0.34304125656405704,
+        "pairwise": 0.34304125656405704
+      },
+      "elapsed_seconds": 9383.99194574356,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 1.9434833165636674,
+        "max_pre_clip": 8.797974586486816,
+        "last_pre_clip": 2.2431094646453857,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.4627854047539731,
+            "pairwise": 0.4627854047539731
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 238.76440834999084
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.38982926968402853,
+            "pairwise": 0.38982926968402853
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.1454577445984
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.37575284771393214,
+            "pairwise": 0.37575284771393214
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.5416235923767
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.37960010298099117,
+            "pairwise": 0.37960010298099117
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.81749892234802
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.36858659428438273,
+            "pairwise": 0.36858659428438273
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 235.2730574607849
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.35590652789767696,
+            "pairwise": 0.35590652789767696
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.72029614448547
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.3535811456759679,
+            "pairwise": 0.3535811456759679
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.8501365184784
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.345959271360179,
+            "pairwise": 0.345959271360179
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.55335593223572
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.34131497221669643,
+            "pairwise": 0.34131497221669643
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.57147860527039
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.099322364796461,
+        "candidates_per_second": 22.395586144479317,
+        "tokens_per_second": 6855.170951971951
+      }
+    }
+  ],
+  "qwen_lora_pointwise_v1_seed123": [
+    {
+      "epoch": 1,
+      "train_loss": 0.4762241725122206,
+      "validation": {
+        "total": 0.4895217827331956,
+        "pointwise": 0.4895217827331956
+      },
+      "elapsed_seconds": 9392.807151794434,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.3777212402160792,
+        "max_pre_clip": 13.291947364807129,
+        "last_pre_clip": 3.2646429538726807,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.5714478256639823,
+            "pointwise": 0.5714478256639823
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 237.49977612495422
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.5548083177961861,
+            "pointwise": 0.5548083177961861
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.6127028465271
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.5391972747352347,
+            "pointwise": 0.5391972747352347
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.0665283203125
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.5276288706993895,
+            "pointwise": 0.5276288706993895
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.88361859321594
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.5219533781635515,
+            "pointwise": 0.5219533781635515
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.90812849998474
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.5051932100046616,
+            "pointwise": 0.5051932100046616
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.19476079940796
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.4948108936834078,
+            "pointwise": 0.4948108936834078
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.9387457370758
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.4938749185314885,
+            "pointwise": 0.4938749185314885
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.94430112838745
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.4888145017107763,
+            "pointwise": 0.4888145017107763
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.15100812911987
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.09453662006232,
+        "candidates_per_second": 22.374567752075087,
+        "tokens_per_second": 6848.737332769618
+      }
+    }
+  ],
+  "qwen_lora_pointwise_v1_seed42": [
+    {
+      "epoch": 1,
+      "train_loss": 0.47751777271790663,
+      "validation": {
+        "total": 0.4896465174178832,
+        "pointwise": 0.4896465174178832
+      },
+      "elapsed_seconds": 9360.54990363121,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.4789510145783424,
+        "max_pre_clip": 34.88144302368164,
+        "last_pre_clip": 2.5174167156219482,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.5779849602603597,
+            "pointwise": 0.5779849602603597
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 236.01162719726562
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.5261892010400324,
+            "pointwise": 0.5261892010400324
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.19399571418762
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.5193269025800622,
+            "pointwise": 0.5193269025800622
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.45673203468323
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.5046241133394624,
+            "pointwise": 0.5046241133394624
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.50912046432495
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.5018924411183502,
+            "pointwise": 0.5018924411183502
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.3217351436615
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.49828388223625686,
+            "pointwise": 0.49828388223625686
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.35579299926758
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.49623980168321197,
+            "pointwise": 0.49623980168321197
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.24089169502258
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.4927678078470013,
+            "pointwise": 0.4927678078470013
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.12406611442566
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.4914416870466006,
+            "pointwise": 0.4914416870466006
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.1309688091278
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.112092824956461,
+        "candidates_per_second": 22.45167240852733,
+        "tokens_per_second": 6872.338661967401
+      }
+    }
+  ],
+  "qwen_lora_pointwise_v1_seed7": [
+    {
+      "epoch": 1,
+      "train_loss": 0.47683363683854224,
+      "validation": {
+        "total": 0.4788556839254416,
+        "pointwise": 0.4788556839254416
+      },
+      "elapsed_seconds": 9392.976928949356,
+      "optimizer_steps": 1496,
+      "learning_rate": 0.0,
+      "gradient_norm": {
+        "mean_pre_clip": 2.274789049026163,
+        "max_pre_clip": 24.344253540039062,
+        "last_pre_clip": 1.5966625213623047,
+        "num_optimizer_updates": 1496
+      },
+      "diagnostic_validations": [
+        {
+          "optimizer_step": 150,
+          "epoch": 1,
+          "learning_rate": 9.566453447050464e-05,
+          "validation": {
+            "total": 0.5801394083690196,
+            "pointwise": 0.5801394083690196
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 237.9056785106659
+        },
+        {
+          "optimizer_step": 300,
+          "epoch": 1,
+          "learning_rate": 8.500355366027008e-05,
+          "validation": {
+            "total": 0.5352756837786146,
+            "pointwise": 0.5352756837786146
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.5247106552124
+        },
+        {
+          "optimizer_step": 450,
+          "epoch": 1,
+          "learning_rate": 7.434257285003554e-05,
+          "validation": {
+            "total": 0.5029218075452028,
+            "pointwise": 0.5029218075452028
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.68417167663574
+        },
+        {
+          "optimizer_step": 600,
+          "epoch": 1,
+          "learning_rate": 6.3681592039801e-05,
+          "validation": {
+            "total": 0.5025312970501716,
+            "pointwise": 0.5025312970501716
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.3273537158966
+        },
+        {
+          "optimizer_step": 750,
+          "epoch": 1,
+          "learning_rate": 5.302061122956645e-05,
+          "validation": {
+            "total": 0.5017883320504366,
+            "pointwise": 0.5017883320504366
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.22566676139832
+        },
+        {
+          "optimizer_step": 900,
+          "epoch": 1,
+          "learning_rate": 4.2359630419331916e-05,
+          "validation": {
+            "total": 0.49962272258079315,
+            "pointwise": 0.49962272258079315
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.9226291179657
+        },
+        {
+          "optimizer_step": 1050,
+          "epoch": 1,
+          "learning_rate": 3.169864960909737e-05,
+          "validation": {
+            "total": 0.4864759536499232,
+            "pointwise": 0.4864759536499232
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.3485496044159
+        },
+        {
+          "optimizer_step": 1200,
+          "epoch": 1,
+          "learning_rate": 2.103766879886283e-05,
+          "validation": {
+            "total": 0.48491513922906426,
+            "pointwise": 0.48491513922906426
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 234.07496666908264
+        },
+        {
+          "optimizer_step": 1350,
+          "epoch": 1,
+          "learning_rate": 1.0376687988628289e-05,
+          "validation": {
+            "total": 0.48082669575490905,
+            "pointwise": 0.48082669575490905
+          },
+          "validation_telemetry": {
+            "nodes": 5751,
+            "candidates": 25442,
+            "derived_pairs": 23236,
+            "tokens": 8305302,
+            "problem_truncated": 0,
+            "prefix_truncated": 436,
+            "candidate_truncated": 5
+          },
+          "elapsed_seconds": 233.94846320152283
+        }
+      ],
+      "train_telemetry": {
+        "nodes": 47852,
+        "candidates": 210160,
+        "derived_pairs": 192415,
+        "tokens": 64328869,
+        "problem_truncated": 31,
+        "prefix_truncated": 391,
+        "candidate_truncated": 30
+      },
+      "validation_telemetry": {
+        "nodes": 5751,
+        "candidates": 25442,
+        "derived_pairs": 23236,
+        "tokens": 8305302,
+        "problem_truncated": 0,
+        "prefix_truncated": 436,
+        "candidate_truncated": 5
+      },
+      "throughput": {
+        "nodes_per_second": 5.094444536802716,
+        "candidates_per_second": 22.374163333914126,
+        "tokens_per_second": 6848.613542500786
+      }
+    }
+  ]
+}

@@ -1,0 +1,773 @@
+{
+  "checkpoint_policy": "last",
+  "checkpoint_policy_is_uniform": true,
+  "selection_rule": "report all objectives and lambdas; no post-hoc hybrid lambda selection",
+  "selected_hybrid_lambda": null,
+  "selected_hybrid_runs": [],
+  "replicate_aggregates": [
+    {
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "mode": "hybrid",
+      "lambda_pair": 0.1,
+      "train_nodes": 47852,
+      "n_runs": 3,
+      "seeds": [
+        7,
+        42,
+        123
+      ],
+      "run_names": [
+        "qwen_lora_hybrid_v1_lam0.1_seed123",
+        "qwen_lora_hybrid_v1_lam0.1_seed42",
+        "qwen_lora_hybrid_v1_lam0.1_seed7"
+      ],
+      "metrics": {
+        "val_step_macro_f1": {
+          "mean": 0.7652642245373191,
+          "sample_std": 0.009064279975046956
+        },
+        "val_pairwise_accuracy": {
+          "mean": 0.8435088583627971,
+          "sample_std": 0.0002810688635301699
+        },
+        "val_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_step_macro_f1": {
+          "mean": 0.7589797523722502,
+          "sample_std": 0.00666320077278759
+        },
+        "test_step_auroc": {
+          "mean": 0.8429132034683685,
+          "sample_std": 0.001614083069699499
+        },
+        "test_step_brier": {
+          "mean": 0.16105168763838118,
+          "sample_std": 0.0006971058794541808
+        },
+        "test_step_ece_10": {
+          "mean": 0.018421791058130115,
+          "sample_std": 0.004730209420027116
+        },
+        "test_pairwise_accuracy": {
+          "mean": 0.8384467198508653,
+          "sample_std": 0.0036710379092451183
+        },
+        "test_first_error_exact": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        }
+      }
+    },
+    {
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "mode": "hybrid",
+      "lambda_pair": 0.3,
+      "train_nodes": 47852,
+      "n_runs": 3,
+      "seeds": [
+        7,
+        42,
+        123
+      ],
+      "run_names": [
+        "qwen_lora_hybrid_v1_lam0.3_seed123",
+        "qwen_lora_hybrid_v1_lam0.3_seed42",
+        "qwen_lora_hybrid_v1_lam0.3_seed7"
+      ],
+      "metrics": {
+        "val_step_macro_f1": {
+          "mean": 0.7699071653520019,
+          "sample_std": 0.00100398173824137
+        },
+        "val_pairwise_accuracy": {
+          "mean": 0.8460708926627895,
+          "sample_std": 0.0018619286753463885
+        },
+        "val_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_step_macro_f1": {
+          "mean": 0.7628177838426923,
+          "sample_std": 0.0020256129695419983
+        },
+        "test_step_auroc": {
+          "mean": 0.8439816577882308,
+          "sample_std": 0.0010358441247074488
+        },
+        "test_step_brier": {
+          "mean": 0.16052633138109473,
+          "sample_std": 0.0004833803979180071
+        },
+        "test_step_ece_10": {
+          "mean": 0.017938056838138122,
+          "sample_std": 0.005051577165962031
+        },
+        "test_pairwise_accuracy": {
+          "mean": 0.8397216602242508,
+          "sample_std": 0.0038122701806417554
+        },
+        "test_first_error_exact": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        }
+      }
+    },
+    {
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "mode": "hybrid",
+      "lambda_pair": 0.5,
+      "train_nodes": 47852,
+      "n_runs": 3,
+      "seeds": [
+        7,
+        42,
+        123
+      ],
+      "run_names": [
+        "qwen_lora_hybrid_v1_lam0.5_seed123",
+        "qwen_lora_hybrid_v1_lam0.5_seed42",
+        "qwen_lora_hybrid_v1_lam0.5_seed7"
+      ],
+      "metrics": {
+        "val_step_macro_f1": {
+          "mean": 0.7678719912464477,
+          "sample_std": 0.0049964190018108225
+        },
+        "val_pairwise_accuracy": {
+          "mean": 0.8459063250099588,
+          "sample_std": 0.0030231602287202368
+        },
+        "val_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_step_macro_f1": {
+          "mean": 0.7617298155923736,
+          "sample_std": 0.0045596331837646
+        },
+        "test_step_auroc": {
+          "mean": 0.8437902598190758,
+          "sample_std": 0.0018904481891804385
+        },
+        "test_step_brier": {
+          "mean": 0.16078015336165583,
+          "sample_std": 0.0010044629047511017
+        },
+        "test_step_ece_10": {
+          "mean": 0.020449863980352014,
+          "sample_std": 0.006163800020999905
+        },
+        "test_pairwise_accuracy": {
+          "mean": 0.8414155221098225,
+          "sample_std": 0.005043999877280551
+        },
+        "test_first_error_exact": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        }
+      }
+    },
+    {
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "mode": "hybrid",
+      "lambda_pair": 1.0,
+      "train_nodes": 47852,
+      "n_runs": 3,
+      "seeds": [
+        7,
+        42,
+        123
+      ],
+      "run_names": [
+        "qwen_lora_hybrid_v1_lam1.0_seed123",
+        "qwen_lora_hybrid_v1_lam1.0_seed42",
+        "qwen_lora_hybrid_v1_lam1.0_seed7"
+      ],
+      "metrics": {
+        "val_step_macro_f1": {
+          "mean": 0.7693627197548366,
+          "sample_std": 0.0036714154816934338
+        },
+        "val_pairwise_accuracy": {
+          "mean": 0.8482201393086447,
+          "sample_std": 0.0008329686051219696
+        },
+        "val_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_step_macro_f1": {
+          "mean": 0.7609439838428581,
+          "sample_std": 0.0031330190158456975
+        },
+        "test_step_auroc": {
+          "mean": 0.8427938345149674,
+          "sample_std": 0.001987899813258801
+        },
+        "test_step_brier": {
+          "mean": 0.161548984821954,
+          "sample_std": 0.0010880497557793569
+        },
+        "test_step_ece_10": {
+          "mean": 0.024900531949442566,
+          "sample_std": 0.004868254883588494
+        },
+        "test_pairwise_accuracy": {
+          "mean": 0.8427094881706277,
+          "sample_std": 0.004523533513992888
+        },
+        "test_first_error_exact": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        }
+      }
+    },
+    {
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "mode": "pairwise",
+      "lambda_pair": null,
+      "train_nodes": 47852,
+      "n_runs": 3,
+      "seeds": [
+        7,
+        42,
+        123
+      ],
+      "run_names": [
+        "qwen_lora_pairwise_v1_seed123",
+        "qwen_lora_pairwise_v1_seed42",
+        "qwen_lora_pairwise_v1_seed7"
+      ],
+      "metrics": {
+        "val_step_macro_f1": {
+          "mean": 0.7207829110286124,
+          "sample_std": 0.013703274695656083
+        },
+        "val_pairwise_accuracy": {
+          "mean": 0.8442295289800064,
+          "sample_std": 0.004839656643636995
+        },
+        "val_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_step_macro_f1": {
+          "mean": 0.737975502686147,
+          "sample_std": 0.0032262489399466753
+        },
+        "test_step_auroc": {
+          "mean": 0.8184090554024127,
+          "sample_std": 0.0035699787976679474
+        },
+        "test_step_brier": {
+          "mean": 0.19164216713165572,
+          "sample_std": 0.00411885828679653
+        },
+        "test_step_ece_10": {
+          "mean": 0.11501446492286622,
+          "sample_std": 0.007767261087894347
+        },
+        "test_pairwise_accuracy": {
+          "mean": 0.8409742851659948,
+          "sample_std": 0.0028313633164027538
+        },
+        "test_first_error_exact": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        }
+      }
+    },
+    {
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "mode": "pointwise",
+      "lambda_pair": null,
+      "train_nodes": 47852,
+      "n_runs": 3,
+      "seeds": [
+        7,
+        42,
+        123
+      ],
+      "run_names": [
+        "qwen_lora_pointwise_v1_seed123",
+        "qwen_lora_pointwise_v1_seed42",
+        "qwen_lora_pointwise_v1_seed7"
+      ],
+      "metrics": {
+        "val_step_macro_f1": {
+          "mean": 0.7644170290115375,
+          "sample_std": 0.00919362182112596
+        },
+        "val_pairwise_accuracy": {
+          "mean": 0.8434231589813223,
+          "sample_std": 0.0010334669184456481
+        },
+        "val_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_step_macro_f1": {
+          "mean": 0.7622980850882501,
+          "sample_std": 0.0036296875880080346
+        },
+        "test_step_auroc": {
+          "mean": 0.842466890181275,
+          "sample_std": 0.001359396060400956
+        },
+        "test_step_brier": {
+          "mean": 0.16118200105373406,
+          "sample_std": 0.0005187601056016464
+        },
+        "test_step_ece_10": {
+          "mean": 0.01589980971343845,
+          "sample_std": 0.005488390330969758
+        },
+        "test_pairwise_accuracy": {
+          "mean": 0.8372154782465667,
+          "sample_std": 0.0013302286624888966
+        },
+        "test_first_error_exact": {
+          "mean": null,
+          "sample_std": null
+        },
+        "test_first_error_within_1": {
+          "mean": null,
+          "sample_std": null
+        }
+      }
+    }
+  ],
+  "rows": [
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam0.1_seed123",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 0.1,
+      "seed": 123,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7553283196171741,
+      "val_pairwise_accuracy": 0.8432001473863757,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7597027111035177,
+      "test_step_auroc": 0.841494946959481,
+      "test_step_brier": 0.16180301739355807,
+      "test_step_ece_10": 0.017209272884438697,
+      "test_pairwise_accuracy": 0.8344815363105523,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam0.1_seed42",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 0.1,
+      "seed": 42,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7673827004613565,
+      "val_pairwise_accuracy": 0.843749948249166,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7519845528932003,
+      "test_step_auroc": 0.842575108961343,
+      "test_step_brier": 0.16092619131678845,
+      "test_step_ece_10": 0.014415867265236092,
+      "test_pairwise_accuracy": 0.841727197960359,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam0.1_seed7",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 0.1,
+      "seed": 7,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7730816535334268,
+      "val_pairwise_accuracy": 0.8435764794528493,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7652519931200323,
+      "test_step_auroc": 0.8446695544842815,
+      "test_step_brier": 0.16042585420479705,
+      "test_step_ece_10": 0.023640233024715556,
+      "test_pairwise_accuracy": 0.8391314252816845,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam0.3_seed123",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 0.3,
+      "seed": 123,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7693010018029887,
+      "val_pairwise_accuracy": 0.848138073985752,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7611610462366657,
+      "test_step_auroc": 0.8428616035573204,
+      "test_step_brier": 0.16107771846985236,
+      "test_step_ece_10": 0.016894424208610554,
+      "test_pairwise_accuracy": 0.8358585409984377,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam0.3_seed42",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 0.3,
+      "seed": 42,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7710660529716673,
+      "val_pairwise_accuracy": 0.844525589752507,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7622162843717168,
+      "test_step_auroc": 0.8441782541117105,
+      "test_step_brier": 0.1601755657523242,
+      "test_step_ece_10": 0.013489807251466793,
+      "test_pairwise_accuracy": 0.8434809606053122,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam0.3_seed7",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 0.3,
+      "seed": 7,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7693544412813498,
+      "val_pairwise_accuracy": 0.8455490142501092,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7650760209196944,
+      "test_step_auroc": 0.8449051156956613,
+      "test_step_brier": 0.16032570992110767,
+      "test_step_ece_10": 0.023429939054337018,
+      "test_pairwise_accuracy": 0.8398254790690024,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam0.5_seed123",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 0.5,
+      "seed": 123,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.762123728323056,
+      "val_pairwise_accuracy": 0.8483675026841427,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7565292424871934,
+      "test_step_auroc": 0.8416581962608578,
+      "test_step_brier": 0.1619339370716148,
+      "test_step_ece_10": 0.021123716868485392,
+      "test_pairwise_accuracy": 0.8362597253063571,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam0.5_seed42",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 0.5,
+      "seed": 42,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7711730979583934,
+      "val_pairwise_accuracy": 0.842531802612658,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7636189170046908,
+      "test_step_auroc": 0.8444506771337429,
+      "test_step_brier": 0.16010063066337873,
+      "test_step_ece_10": 0.0139768253785144,
+      "test_pairwise_accuracy": 0.8463397483345667,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam0.5_seed7",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 0.5,
+      "seed": 7,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7703191474578939,
+      "val_pairwise_accuracy": 0.8468196697330758,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7650412872852366,
+      "test_step_auroc": 0.8452619060626269,
+      "test_step_brier": 0.1603058923499739,
+      "test_step_ece_10": 0.02624904969405625,
+      "test_pairwise_accuracy": 0.8416470926885439,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam1.0_seed123",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 1.0,
+      "seed": 123,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7652435390109423,
+      "val_pairwise_accuracy": 0.8486399880766068,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7577402031549947,
+      "test_step_auroc": 0.8405783571724316,
+      "test_step_brier": 0.16280528294209276,
+      "test_step_ece_10": 0.025679338328726098,
+      "test_pairwise_accuracy": 0.8392602187679905,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam1.0_seed42",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 1.0,
+      "seed": 42,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.772290385088159,
+      "val_pairwise_accuracy": 0.8487596360053317,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7640010889928256,
+      "test_step_auroc": 0.8433814859088609,
+      "test_step_brier": 0.16090906520312975,
+      "test_step_ece_10": 0.019689821771102227,
+      "test_pairwise_accuracy": 0.8478310716341799,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_hybrid_v1_lam1.0_seed7",
+      "mode": "hybrid",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": 1.0,
+      "seed": 7,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7705542351654082,
+      "val_pairwise_accuracy": 0.8472607938439959,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7610906593807543,
+      "test_step_auroc": 0.84442166046361,
+      "test_step_brier": 0.16093260632063952,
+      "test_step_ece_10": 0.029332435748499367,
+      "test_pairwise_accuracy": 0.841037174109713,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_pairwise_v1_seed123",
+      "mode": "pairwise",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": null,
+      "seed": 123,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.714252697714468,
+      "val_pairwise_accuracy": 0.8469896194726639,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7354327953717247,
+      "test_step_auroc": 0.8167686165101732,
+      "test_step_brier": 0.19407026551083065,
+      "test_step_ece_10": 0.11980865707076702,
+      "test_pairwise_accuracy": 0.8397234969981089,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_pairwise_v1_seed42",
+      "mode": "pairwise",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": null,
+      "seed": 42,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7365298834492007,
+      "val_pairwise_accuracy": 0.8386413128979634,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7416047498645746,
+      "test_step_auroc": 0.8225044036698798,
+      "test_step_brier": 0.18688647322774435,
+      "test_step_ece_10": 0.10605290877635293,
+      "test_pairwise_accuracy": 0.8442156427337767,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_pairwise_v1_seed7",
+      "mode": "pairwise",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": null,
+      "seed": 7,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7115661519221683,
+      "val_pairwise_accuracy": 0.8470576545693919,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7368889628221417,
+      "test_step_auroc": 0.8159541460271852,
+      "test_step_brier": 0.19396976265639218,
+      "test_step_ece_10": 0.11918182892147872,
+      "test_pairwise_accuracy": 0.8389837157660989,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_pointwise_v1_seed123",
+      "mode": "pointwise",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": null,
+      "seed": 123,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.757998122729515,
+      "val_pairwise_accuracy": 0.8445870697435628,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7601608970394393,
+      "test_step_auroc": 0.841707705514406,
+      "test_step_brier": 0.1615694768653153,
+      "test_step_ece_10": 0.014463553697006637,
+      "test_pairwise_accuracy": 0.8360374208405299,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_pointwise_v1_seed42",
+      "mode": "pointwise",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": null,
+      "seed": 42,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.760303851901277,
+      "val_pairwise_accuracy": 0.8426130859229454,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.7602443478650851,
+      "test_step_auroc": 0.8416566562121648,
+      "test_step_brier": 0.1613838752290828,
+      "test_step_ece_10": 0.01127235029682162,
+      "test_pairwise_accuracy": 0.8386581133316889,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    },
+    {
+      "run_name": "qwen_lora_pointwise_v1_seed7",
+      "mode": "pointwise",
+      "backend": "causal_lora",
+      "model_name": "Qwen/Qwen2.5-Math-1.5B",
+      "max_length": 2048,
+      "lambda_pair": null,
+      "seed": 7,
+      "train_nodes": 47852,
+      "checkpoint": "last",
+      "checkpoint_epoch": 1,
+      "val_step_macro_f1": 0.7749491124038207,
+      "val_pairwise_accuracy": 0.8430693212774584,
+      "val_first_error_within_1": null,
+      "test_step_macro_f1": 0.766489010360226,
+      "test_step_auroc": 0.844036308817254,
+      "test_step_brier": 0.16059265106680407,
+      "test_step_ece_10": 0.021963525146487094,
+      "test_pairwise_accuracy": 0.8369509005674813,
+      "test_first_error_exact": null,
+      "test_first_error_within_1": null
+    }
+  ]
+}

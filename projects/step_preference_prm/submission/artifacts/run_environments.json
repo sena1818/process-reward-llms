@@ -1,0 +1,1226 @@
+{
+  "qwen_lora_hybrid_v1_lam0.1_seed123": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6746174",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n072"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6746174/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam0.1_seed42": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744430",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n103"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744430/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam0.1_seed7": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744462",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n074"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744462/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam0.3_seed123": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6746792",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n103"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6746792/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam0.3_seed42": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744431",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n075"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744431/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam0.3_seed7": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744647",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n071"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744647/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam0.5_seed123": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6747206",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n072"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6747206/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam0.5_seed42": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744632",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n075"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744632/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam0.5_seed7": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744681",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n074"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744681/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam1.0_seed123": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6743962",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n076"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6743962/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam1.0_seed42": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6743958",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n103"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6743958/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_hybrid_v1_lam1.0_seed7": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6743960",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n071"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6743960/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_pairwise_v1_seed123": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6745049",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n103"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6745049/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_pairwise_v1_seed42": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744224",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n075"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744224/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_pairwise_v1_seed7": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744435",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n103"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744435/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_pointwise_v1_seed123": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744688",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n072"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744688/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_pointwise_v1_seed42": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744212",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n103"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744212/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  },
+  "qwen_lora_pointwise_v1_seed7": {
+    "python": "3.11.11 (main, Apr 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]",
+    "platform": "Linux-5.14.0-570.128.1.el9_6.x86_64-x86_64-with-glibc2.34",
+    "torch": "2.10.0+cu128",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "git_revision": "0353318ccd3136a616979ba4ac2ff2bd62a39d38",
+    "model_parameters": {
+      "total": 1562180609,
+      "trainable": 18466305,
+      "trainable_fraction": 0.011820851503092752
+    },
+    "slurm": {
+      "SLURM_JOB_ID": "6744231",
+      "SLURM_JOB_NAME": "prm-qwen-v1",
+      "SLURM_JOB_PARTITION": "gpu_h100",
+      "SLURM_JOB_NODELIST": "uc3n103"
+    },
+    "gpu": {
+      "name": "NVIDIA H100",
+      "count_visible": 1,
+      "capability": [
+        9,
+        0
+      ]
+    },
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "data": {
+      "nodes_dir": "/scratch/slurm_tmpdir/job_6744231/prm-data/nodes_v0",
+      "stats": {
+        "version": 1,
+        "kind": "nodes_v0",
+        "max_raw_records": null,
+        "counts": {
+          "candidates_test": 22043,
+          "candidates_train": 210160,
+          "candidates_val": 25442,
+          "conflicting_binary_texts_test": 6,
+          "conflicting_binary_texts_train": 111,
+          "conflicting_binary_texts_val": 7,
+          "derived_pairs_test": 20519,
+          "derived_pairs_train": 192415,
+          "derived_pairs_val": 23236,
+          "max_candidates_per_node": 8,
+          "max_pairs_per_node": 15,
+          "negative_candidates_test": 11857,
+          "negative_candidates_train": 109798,
+          "negative_candidates_val": 13460,
+          "nodes_test": 4825,
+          "nodes_train": 47852,
+          "nodes_val": 5751,
+          "nodes_with_conflicting_binary_texts_test": 6,
+          "nodes_with_conflicting_binary_texts_train": 109,
+          "nodes_with_conflicting_binary_texts_val": 7,
+          "positive_candidates_test": 10186,
+          "positive_candidates_train": 100362,
+          "positive_candidates_val": 11982
+        },
+        "cohort": {
+          "requires_positive_and_negative": true,
+          "drop_conflicting_binary_texts": true,
+          "outer_sampling_unit": "annotated_exact_prefix_node"
+        }
+      }
+    }
+  }
+}

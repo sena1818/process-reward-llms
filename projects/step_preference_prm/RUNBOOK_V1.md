@@ -8,6 +8,10 @@
 > [`TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md`](TRAINING_AUDIT_AND_UNICLUSTER_GUIDE.md)。
 > [`RUNBOOK_V0.md`](RUNBOOK_V0.md) 是更早的 encoder 版本，已不是主实验。
 
+> **2026-09-30 提交状态更新**：18 个 V1 run 均有完整训练与评测归档。
+> 复现入口见 [`SUBMISSION_README.md`](SUBMISSION_README.md)。本次只补充
+> 执行状态和结果位置；第 4 节保留训练前冻结的协议。
+
 ## 1. 时间线
 
 | 阶段 | 日期 | 结果 |
@@ -18,7 +22,7 @@
 | V0 评测（epoch 3）与汇总 | 2026-08-11 ~ 08-12 | `v0_summary.json` |
 | 探索性 epoch-1 评测与汇总 | 2026-08-13 | `v0_best_epoch1_exploratory_summary.json` |
 | 全面代码/结果审计 | 2026-08-30 | 发现 epoch 3 过拟合，见第 3 节 |
-| **V1 确认性实验（18 run × 1 epoch）** | 2026-08-31 起 | 进行中 |
+| **V1 固定协议实验（18 run × 1 epoch）** | 2026-08-31 起 | 完成，18 份 metrics/history/environment 已归档 |
 
 ## 2. 已执行的集群作业（UC3）
 
@@ -40,15 +44,29 @@
 | 6268292 | prm-qwen-summary | 08-12 | `v0_summary.json` | 完成 |
 | **6268417** | prm-qwen-e1-eval | 08-13 | **epoch-1（`best.pt`）探索性评测** | 6/6 COMPLETED 0:0 |
 | 6294975 | prm-qwen-e1-summary | 08-13 | epoch-1 汇总 | 完成 |
-| 6743886 | prm-qwen-v1-pilot | 08-31 | V1 实现门禁（训练 + 评测） | 进行中 |
+| 6743886 | prm-qwen-v1-pilot | 08-31 | V1 实现门禁（训练 + 评测） | 完成，三项检查全过 |
+| **6743958** | prm-qwen-v1 | 08-31 | **V1 训练 seed 42，6 task** | 最终 6 个 run 已归档，含后续重投 |
+| 6743959 | prm-qwen-v1-eval | 08-31 | seed 42 评测（依赖 6743958） | 6 份最终 metrics 已归档 |
+| **6743960** | prm-qwen-v1 | 08-31 | **V1 训练 seed 7，6 task** | 最终 6 个 run 已归档，含后续重投 |
+| 6743961 | prm-qwen-v1-eval | 08-31 | seed 7 评测（依赖 6743960） | 6 份最终 metrics 已归档 |
+| **6743962** | prm-qwen-v1 | 08-31 | **V1 训练 seed 123，6 task** | 最终 6 个 run 已归档，含后续重投 |
+| 6743963 | prm-qwen-v1-eval | 08-31 | seed 123 评测（依赖 6743962） | 6 份最终 metrics 已归档 |
+| 6743964 | prm-qwen-v1-summary | 08-31 | 汇总（依赖三个 eval array） | 最终 18-run 汇总已归档 |
+
+以上是原始提交 ID；后续重投的最终训练 ID 记录在各 run 的 environment
+归档中。这里的完成状态依据最终产物，不等同于证明原始 array 每个 task
+的 Slurm 退出状态。
 
 代码版本：V0 主实验跑在 `145e343`；epoch-1 探索性评测跑在 `0fa739d`；V1 跑在
-`0353318`。归档里的 `cluster-git-state.txt` 记的是 `145e343`，是归档时刻的状态，
+`0353318`（本文件的预注册提交为 `7a15cf7`，早于 6743958 起的 sweep）。归档里的 `cluster-git-state.txt` 记的是 `145e343`，是归档时刻的状态，
 不覆盖 08-13 那次评测。
 
 ### 关键产物
 
-- `qwen_lora_runs/v0_summary.json` —— epoch-3 主表，当前 ACL 草稿所有数字的来源
+- `submission/artifacts/v1_summary.json` —— 最终报告主表的 18-run 汇总
+- `submission/artifacts/metrics/` —— 每个 V1 run 的详细评测结果
+- `submission/artifacts/v1_scores.zip` —— validation/test 分数，用于复核重标定
+- `qwen_lora_runs/v0_summary.json` —— 旧 V0 epoch-3 主表，仅作历史对照
 - `qwen_lora_runs/v0_best_epoch1_exploratory_summary.json` —— epoch-1 对照
 - `qwen_lora_runs/<run>/history.json` —— 每轮训练/验证损失
 - `logs/prm-qwen-main-6235682_*.out` —— 每 25 步的训练损失（累计均值）
@@ -178,6 +196,10 @@ sbatch experiments/unicluster/05c_qwen_v1_pilot.sbatch
 pilot 会训练一个 λ=0.3 的截断 run 并**评测它**，因此新的诊断验证路径和新的评测
 路径（`report_first_error: false` + `save_scores: true`）都在正式 sweep 之前在
 H100 上执行过一次。完成后检查：
+
+2026-08-31 的 pilot（6743886）实测：`diagnostics: 2`、`final lr: 0.0`、两个
+`strict_node_scores_*.jsonl` 均生成、summary 的 `selected_hybrid_lambda` 为
+`null`。`gradient_norm.mean_pre_clip = 12.1`，见下方说明。
 
 ```bash
 python -c "import json,glob;p=glob.glob('outputs/qwen_lora_v1_runs_pilot/*/history.json')[0];h=json.load(open(p))[0];print('diagnostics:',len(h['diagnostic_validations']),'| final lr:',h['learning_rate'],'| grad_norm mean:',h['gradient_norm']['mean_pre_clip'])"
